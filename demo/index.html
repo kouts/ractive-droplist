@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="ractive-droplist demo page">
+    <meta name="author" content="kouts">
+
+    <title>ractive-droplist demo page</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+
+    <!-- Custom styles -->
+    <style>
+        body {
+            padding-top: 5rem;
+		}
+        .code-comment {
+            padding-left:20px;
+        }
+  		.jumbotron {
+  		    padding: 3rem 1.5rem;
+  		    text-align: center;
+  		}
+        .navbar-nav-svg {
+            display: inline-block;
+            width: 1.5rem;
+            height: 1.5rem;
+            vertical-align: text-top;
+        }
+        .highlight {
+            background-color: #f7f7f9;
+        }
+    </style>
+  </head>
+
+  <body>
+
+  	<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  		<a class="navbar-brand" href="javascript:;">ractive-droplist</a>
+  		<div class="collapse navbar-collapse">
+  			<ul class="navbar-nav mr-auto">
+  			<!--
+                <li class="nav-item active">
+  					<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+  				</li>
+             -->
+  			</ul>
+  			<form class="form-inline">
+          <a class="nav-link" style="color:#fff;" href="https://github.com/kouts/ractive-droplist" target="_blank" rel="noopener" aria-label="ractive-droplist GitHub">
+            <svg class="navbar-nav-svg" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 499.36" focusable="false"><title>ractive-droplist at GitHub</title><path d="M256 0C114.64 0 0 114.61 0 256c0 113.09 73.34 209 175.08 242.9 12.8 2.35 17.47-5.56 17.47-12.34 0-6.08-.22-22.18-.35-43.54-71.2 15.49-86.2-34.34-86.2-34.34-11.64-29.57-28.42-37.45-28.42-37.45-23.27-15.84 1.73-15.55 1.73-15.55 25.69 1.81 39.21 26.38 39.21 26.38 22.84 39.12 59.92 27.82 74.5 21.27 2.33-16.54 8.94-27.82 16.25-34.22-56.84-6.43-116.6-28.43-116.6-126.49 0-27.95 10-50.8 26.35-68.69-2.63-6.48-11.42-32.5 2.51-67.75 0 0 21.49-6.88 70.4 26.24a242.65 242.65 0 0 1 128.18 0c48.87-33.13 70.33-26.24 70.33-26.24 14 35.25 5.18 61.27 2.55 67.75 16.41 17.9 26.31 40.75 26.31 68.69 0 98.35-59.85 120-116.88 126.32 9.19 7.9 17.38 23.53 17.38 47.41 0 34.22-.31 61.83-.31 70.23 0 6.85 4.61 14.81 17.6 12.31C438.72 464.97 512 369.08 512 256.02 512 114.62 397.37 0 256 0z" fill="currentColor" fill-rule="evenodd"/></svg>
+          </a>
+  				<a href="https://github.com/kouts/ractive-droplist/archive/master.zip" class="btn btn-outline-success">Download</a>
+  			</form>
+  		</div>
+  	</nav>
+
+  	<div class="container" id="app"></div>
+
+    <script type="text/template" id="app-template">
+
+      <div class="jumbotron">
+        <h1>ractive-droplist</h1>
+        <p class="lead">A searchable select list for Ractive </p>
+        <p>This page includes basic documentation and examples for the ractive-droplist component</p>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-sm-12">
+          <h2 class="pb-2">Quick demo</h2>
+          <p>
+            
+          </p>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-sm-12">
+          <h2 class="pb-2">Features at a glance</h2>
+          <ul>
+            <li>Lightweight, minified version is &lt; <strong>8kb</strong></li>
+            <li>Opens and closes with a data variable</li>
+            <li>Includes default styling but it's also highly customizable via user CSS classes and styles</li>
+            <li>Modal intro and outro effects using CSS animations</li>
+            <li>Exposes Component events - beforeOpen, opening, afterOpen, beforeClose, afterClose</li>
+            <li>Scrollable when it's contents exceed screen height</li>
+            <li>Closeable by clicking on the upper right "x", the overlay or the esc key</li>
+            <li><strong>Stackable</strong> - Multiple modal windows on top of each other</li>
+            <li>Ability to set initial focus on an element when the modal window opens, just set the <strong>autofocus</strong> attribute on an element inside the modal</li>
+            <li>Focus management trapps keyboard focus - navigation inside the modal window</li>
+            <li>Ability to have unclosable modal windows</li>
+            <li>Render on demand or stay always in DOM with "live" mode</li>
+            <li>Ability to append to an element</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-sm-12">
+          <h2>Install</h2>
+          <h4 class="pb-2">ractive-droplist is a UMD module so you can use it as an ES2015, AMD, CommonJS module or a global (RactiveDroplist)</h4>
+          <h5>ES2015</h5>
+          <pre class="highlight">
+            <code as-code>
+  npm install ractive-droplist --save
+  import RactiveDroplist from 'ractive-droplist';
+            </code>
+          </pre>
+          <h5>Global - download the repo, extract dist/ractive-droplist.min.js and include it in your page</h5>
+          <pre class="highlight">
+            <code>
+  &lt;script type="text/javascript" src="ractive-droplist.min.js"&gt;&lt;/script&gt;</code>
+          </pre>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-sm-12">
+          <h2>Basic usage</h2>
+          <h5>Make ractive-droplist available to all Ractive instances</h5>
+          <pre class="highlight">
+            <code as-code>
+  Ractive.components.droplist = RactiveDroplist;
+            </code>
+          </pre>
+
+          <h5>or add the ractive-droplist to your Ractive instance</h5>
+          <pre class="highlight">
+            <code as-code>
+  var ractive = new Ractive({
+    ...
+    components: {
+      droplist: RactiveDroplist
+    },
+    data: {
+      
+    }
+  });
+            </code>
+          </pre>
+
+          <h5>then in your template</h5>
+          <pre class="highlight">
+            <code as-code>
+            <!--
+<button type="button" class="btn btn-primary" on-click="@this.set('open_modal_1', true)">Open modal</button>
+<modal title="My first modal" basedon="{{open_modal_1}}">
+  <p>Hello World!</p>
+</modal>
+            -->
+            </code>
+          </pre>
+
+          <h5>Example</h5>
+          <button type="button" class="btn btn-primary" on-click="@this.set('open_modal_1', true)">Open modal</button>
+
+        </div>
+      </div>
+
+
+
+
+      <div class="row mb-3">
+        <div class="col-sm-12">
+          <h2 class="pb-2">Options</h2>
+
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Option</th>
+                  <th>Description</th>
+                  <th>Type</th>
+                  <th>Default</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>basedon</td>
+                  <td>Opens and closes the modal window</td>
+                  <td>Boolean</td>
+                  <td>false</td>
+                </tr>
+                <tr>
+                  <td>live</td>
+                  <td>Controls whether the modal renders dynamically or stays hidden in the DOM<br />
+                    <strong>This option should not be changed at runtime</strong>
+                  </td>
+                  <td>Boolean</td>
+                  <td>false</td>
+                </tr>
+                <tr>
+                  <td>appendto</td>
+                  <td>Element (selector) in which the modal is to be inserted to, e.g 'body'<br />
+                    <strong>This option should not be changed at runtime</strong>
+                  </td>
+                  <td>String</td>
+                  <td>Ractive root instance el</td>
+                </tr>
+                <tr>
+                  <td>class</td>
+                  <td>Extra css classes for the modal element</td>
+                  <td>String</td>
+                  <td><em>Empty</em></td>
+                </tr>
+                <tr>
+                  <td>bg_class</td>
+                  <td>Extra css classes for the modal backdrop</td>
+                  <td>String</td>
+                  <td><em>Empty</em></td>
+                </tr>
+                <tr>
+                  <td>base_anim_class</td>
+                  <td>Your animation framework's base class e.g "animate". This applies to the modal and the modal backdrop elements.</td>
+                  <td>String</td>
+                  <td><em>Empty</em></td>
+                </tr>
+                <tr>
+                  <td>in_class</td>
+                  <td>Animation class for the modal intro</td>
+                  <td>String</td>
+                  <td>rm-fadeIn</td>
+                </tr>
+                <tr>
+                  <td>out_class</td>
+                  <td>Animation class for the modal outro</td>
+                  <td>String</td>
+                  <td>rm-fadeOut</td>
+                </tr>
+                <tr>
+                  <td>bg_in_class</td>
+                  <td>Animation class for the modal backdrop intro</td>
+                  <td>String</td>
+                  <td>rm-fadeIn</td>
+                </tr>
+                <tr>
+                  <td>bg_out_class</td>
+                  <td>Animation class for the modal backdrop outro</td>
+                  <td>String</td>
+                  <td>rm-fadeOut</td>
+                </tr>                
+                <tr>
+                  <td>style</td>
+                  <td>Extra css styles for the modal element</td>
+                  <td>String</td>
+                  <td><em>Empty</em></td>
+                </tr>
+                <tr>
+                  <td>title</td>
+                  <td>The title of the modal element</td>
+                  <td>String</td>
+                  <td><em>Empty</em></td>
+                </tr>
+                <tr>
+                  <td>enableclose</td>
+                  <td>Controls whether the modal window is closable or not</td>
+                  <td>Boolean</td>
+                  <td>true</td>
+                </tr>
+
+              </tbody>
+            </table>
+
+        </div>
+      </div>
+
+      <div class="row mb-3"></div>
+      <div class="row mb-3">
+        <div class="col-sm-12">
+          <h2 class="pb-2">Changelog</h2>
+
+          <h5>version 0.3.1</h5>
+          <ul>
+            <li>Added opening event.</li>
+          </ul>
+
+          <h5>version 0.3</h5>
+          <ul>
+            <li>Modal intro and outro is now handled by CSS animation classes for both the modal window and modal backdrop elements.</li>
+            <li>Separate the modal window and the modal backdrop into different elements.</li>
+          </ul>
+
+          <h5>version 0.2.2</h5>
+          <ul>
+            <li>event.stopPropagation on modal element caused click events not propagating up to the document.<br />This is now fixed with a clickoutside handler method</li>
+          </ul>
+
+          <h5>version 0.2.1</h5>
+          <ul>
+            <li>Fixed a bug in trapped keyboard navigation logic that would take in to account hidden elements</li>
+            <li>Fixed a bug so that the modal is now correctly inserted in the element of the appendto option</li>
+          </ul>
+
+          <h5>version 0.2</h5>
+          <ul>
+            <li>Added "live" option</li>
+            <li>Added autofocus logic</li>
+            <li>Added trapped keyboard navigation logic</li>
+            <li>Added appendto element logic</li>
+            <li>Removed basedon as String option</li>
+          </ul>
+
+          <h5>version 0.1</h5>
+          <ul>
+            <li>Initial release</li>
+          </ul>
+          
+        </div>
+      </div>
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+    <script src="../dist/ractive-droplist.js"></script>
+
+    <script type="text/javascript">
+
+      function findComments(el) {
+        var arr = [];
+        for(var i = 0; i < el.childNodes.length; i++) {
+          var node = el.childNodes[i];
+          if(node.nodeType === 8) {
+            arr.push(node);
+          } else {
+            arr.push.apply(arr, findComments(node));
+          }
+        }
+        return arr;
+      };
+
+      function esc(string){
+        var entityMap = {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': '&quot;', "'": '&#39;', "/": '&#x2F;'};
+        return String(string).replace(/[&<>"'\/]/g, function(s){
+          return entityMap[s];
+        });
+      }
+
+      Ractive.decorators.code = function(node){
+        var comments = findComments(node);
+        for (var i = 0; i < comments.length; i++) {
+          var temp = document.createElement('div');
+          temp.classList.add('code-comment');
+          temp.innerHTML = esc(comments[i].nodeValue).replace(/^\s+|\s+$/g, '');
+          node.replaceChild(temp, comments[i]);
+        };
+        return {
+          teardown: function(){
+          }
+        }        
+      }
+
+      var ractive = new Ractive({
+        stripComments: false,
+        target: '#app',
+        template: '#app-template',
+        data: {
+        },
+        components: {
+          droplist: RactiveDroplist
+        },
+        on: {
+        }
+      });
+    </script>
+
+  </body>
+</html>

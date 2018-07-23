@@ -1,0 +1,195 @@
+<style>
+</style>
+
+<div class="{{class}}" class-hidden="fp.hidden">
+   {{#if label}}<label class="oh nowrap-ellipsis">{{#if fp.required}}<span class="required">*</span>{{/if}}{{label}}</label>{{/if}}
+   <input type="text" name="{{name}}" value="{{value}}" class="hidden-out-of-view" class-required="fp.required" />
+   <div class="droplist btn-group" class-open="menu_open" on-actionoutside="@this.set('menu_open', false)">
+       <button type="button" class="btn btn-default dropdown-toggle" aria-haspopup="true" aria-expanded="{{menu_open ? 'true' : 'false'}}" on-click="toggle_menu" {{fp.disabled ? 'disabled' : ''}} >
+           <span class="selected-text">{{{selected_text ? selected_text : '&nbsp;'}}}</span> 
+           <span class="caret"></span>
+       </button>
+       <ul class="dropdown-menu js-input-container">
+           <li style="padding:5px;">
+               <input type="text" class="form-control" autocomplete="off" value="{{text_value}}" on-keydown="keydown" placeholder="{{type_to_search}}" />
+           </li>
+       </ul>
+       <ul class="dropdown-menu js-drop-list" style="max-height: {{maxheight}}px; {{show_list_on_open || text_value ? '' :'height:0px;'}}">
+           {{#each filtered}}
+               <li class-selected="value == ~/value" class-active="value == active_value" on-click="set_selected" on-mouseenter="set_active" on-mouseup="@this.find('input').focus(), set_active">
+                   {{>content}}
+               </li>
+           {{else}}
+               <li>{{text_value ? no_results : ''}}</li>
+           {{/each}}
+       </ul>
+   </div>
+   <label class="error" for="{{name}}" style="display:none;"></label>
+</div>
+
+<script>
+    export default Ractive.extend({
+        template: $TEMPLATE,
+        css: $CSS,
+        data: function() {
+            return {
+                no_results: 'No results',
+                type_to_search: 'Type here to search',
+                label: '',
+                class: '',
+                menu_open: false,
+                list: [],
+                value: '',
+                active_value: '',
+                text_value: '',
+                show_list_on_open: true,
+                as_value: 'value',
+                as_text: 'text',
+                maxheight: 210,
+                add_search: '',
+                fp: {
+                    required: false,
+                    hidden: false,
+                    disabled: false
+                },
+                fp_event: null
+            }
+        },
+        computed: {
+            filtered: function() {
+                var show_list_on_open = this.get('show_list_on_open');
+                var tosearch = this.get('text_value');
+                var list = (show_list_on_open || !show_list_on_open && tosearch.length > 0) ? this.get('list') : [];
+                // Rename keys and filter at the same time
+                return list.reduce(function(arr, o) {
+                    var k = {value: o[this.get('as_value')], text: o[this.get('as_text')]}
+                    // If add_search doesnt exist then set it empty value.
+                    k.add_search = o[this.get('add_search')] ? o[this.get('add_search')] : '';
+                    // add_search is an additional field to search in list. Search results based on two criteria.
+                    if(k.text.toUpperCase().indexOf(tosearch.toUpperCase()) >= 0 || k.add_search.toUpperCase().indexOf(tosearch.toUpperCase()) >= 0){
+                        // Find mathed text from list based on text input.  We do that for text case. Matches both capital and lower case letters 
+                        var search_text = new RegExp(tosearch, 'i').exec(k.text);
+                        if(search_text!= null){
+                            k.text_highlighted = k.text.replace(search_text[0], '<mark>'+search_text[0]+'</mark>');
+                        }else{
+                            k.text_highlighted = k.text.replace(tosearch, '<mark>'+tosearch+'</mark>');
+                        }
+                        arr.push(k);
+                    }
+                    return arr;
+                }.bind(this), []);
+            },
+            selected_text: function() {
+                var value = this.get('value');
+                var list = this.get('list');
+                var toret = list.filter(function(o) {
+                    return o[this.get('as_value')] == value;
+                }.bind(this));
+                return (toret.length > 0) ? toret[0][this.get('as_text')] : '';
+            },
+            name: function(){
+                return 'dl_'+_u.uuid();
+            }
+        },
+        on: {
+            keydown: function(ctx) {
+                var k = ctx.original.keyCode;
+                if (k === 38 || k === 40) {
+                    ctx.original.preventDefault();
+                    var filtered = this.get('filtered');
+                    var selected = this.get('value');
+                    var active = this.get('active_value');
+                    var toselect = '';
+                    var active_found = false;
+                    // Find active li and then select previous or next li. If last li is selected, then select last li when down arrow pressed.
+                    for (var i = 0; i < filtered.length; i++) {
+                        if (filtered[i]['value'] == active) {
+                            var pr = (k == 38) ? -1 : 1;
+                            toselect = typeof(filtered[i + pr]) != 'undefined' ? filtered[i + pr]['value'] : filtered[i]['value'];
+                            active_found = true;
+                            break;
+                        }
+                    };
+                    var value = active_found ? toselect : filtered.length > 0 ? filtered[0]['value'] : '';
+                    this.set('active_value', value);
+                    var selected_li = this.find('li.active');
+                    var selected_li_offset_top = selected_li.offsetTop;
+                    var selected_li_height = selected_li.clientHeight;
+                    var list = this.find('.js-drop-list');
+                    // Up arrow keypress
+                    if(k === 38){
+                        // If next selected li is above current view, then scrollup
+                        if (selected_li_offset_top < list.scrollTop){
+                            list.scrollTop-=selected_li_height;
+                        }
+                    }
+                    // Down arrow keypress
+                    if(k === 40){
+                        // If next li is out of current view, then scrolldown.
+                        if (selected_li_offset_top +selected_li_height > list.offsetHeight+list.scrollTop){
+                            // If selected li is not the last one then scrolldown
+                            if(selected_li_offset_top + selected_li_height <= list.scrollHeight){
+                                list.scrollTop+=selected_li_height;
+                            }
+                        }
+                    }
+                }
+                // Enter button pressed
+                if (k === 13) {
+                    ctx.original.preventDefault();
+                    this.set({
+                        value: this.get('filtered').length == 1 ? this.get('filtered.0.value') : this.get('active_value'),
+                        menu_open: false
+                    });
+                    this.fire('change', ctx, {selected_line: ctx.get()});
+                    this.find('button.dropdown-toggle').focus();
+                }
+            },
+            set_selected: function(ctx) {
+                this.set({
+                    value: ctx.get('value'),
+                    menu_open: false
+                });
+                this.fire('change', ctx, {selected_line: ctx.get()});
+                this.find('button.dropdown-toggle').focus();
+            },
+            set_active: function(ctx) {
+                this.set('active_value', ctx.get('value'));
+            },
+            open_menu: function(ctx){
+                var droplist = this.find('.droplist.btn-group');
+                var list = this.find('.js-drop-list');
+                var input_container = this.find('.js-input-container');
+                this.set({
+                    active_value: this.get('value'),
+                    text_value: '',
+                    menu_open: true
+                });
+                var height = list.offsetHeight + input_container.offsetHeight;
+                var dist_top = droplist.getBoundingClientRect().top;
+                var dist_bottom = window.innerHeight - droplist.getBoundingClientRect().top - droplist.offsetHeight;
+                if(dist_bottom - height < 0 && dist_top - height > 0){
+                    droplist.classList.add('dropup');
+                }else{
+                    droplist.classList.remove('dropup');
+                }
+                this.find('.js-input-container > li > input').focus();
+                if (this.find('li.selected')) {
+                    list.scrollTop = this.find('li.selected').offsetTop;
+                }
+            },
+            toggle_menu: function(ctx) {
+                if (this.get('menu_open') == false) {
+                    this.fire('open_menu', ctx);
+                } else {
+                    this.set('menu_open', false);
+                }
+            },
+            change: function(){
+                if(this.get('fp_event')){
+                    this.exportFpData(this.find('input'), this.get('fp_event'));
+                }
+            }
+        }
+    });
+</script>

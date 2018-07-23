@@ -1,0 +1,29 @@
+{
+  "//": "To use type: npm run dev",
+  "name": "ractive-droplist",
+  "version": "0.0.1",
+  "description": "A searchable select list for Ractive ",
+  "main": "dist/ractive-droplist.js",
+  "repository": "https://github.com/kouts/ractive-droplist",
+  "keywords": [
+    "ractive",
+    "component",
+    "droplist",
+    "select",
+    "select2",
+    "dropdown"
+  ],
+  "devDependencies": {
+    "ractive": "*",
+    "ractive-bin-loader": "^1.0.1",
+    "webpack": "^3.3.0",
+    "onchange": "*"
+  },
+  "scripts": {
+    "build": "webpack",
+    "dev": "onchange 'src/*.*' -- npm run build"
+  },
+  "author": "kouts",
+  "license": "ISC",
+  "dependencies": {}
+}
