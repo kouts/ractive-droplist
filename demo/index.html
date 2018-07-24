@@ -69,9 +69,9 @@
       <div class="row mb-3">
         <div class="col-sm-12">
           <h2 class="pb-2">Quick demo</h2>
-          <p>
-            
-          </p>
+          <droplist list="{{trade_codes}}" value="{{selected_value}}" show_list_on_open="false" on-change="droplist_changed">
+            <span title="{{text}}">{{{text ? text_highlighted : '&nbsp;'}}}</span>
+          </droplist>
         </div>
       </div>
 
@@ -354,6 +354,1237 @@
         target: '#app',
         template: '#app-template',
         data: {
+            selected_value: '',
+            trade_codes: [
+                {
+                    "value": "",
+                    "text": ""
+                },
+                {
+                    "value": "522500",
+                    "text": "Retail sale of alcoholic and other beverages"
+                },
+                {
+                    "value": "513420",
+                    "text": "Wholesale of wine and spirits"
+                },
+                {
+                    "value": "525020",
+                    "text": "Antique shops"
+                },
+                {
+                    "value": "523100",
+                    "text": "Dispensing chemists"
+                },
+                {
+                    "value": "925130",
+                    "text": "Archives"
+                },
+                {
+                    "value": "851220",
+                    "text": "General medical specialists and out-patients' clinics"
+                },
+                {
+                    "value": "524866",
+                    "text": "Retail sale of computers and standard software"
+                },
+                {
+                    "value": "300200",
+                    "text": "Manufacture of computers and other information processing equipment"
+                },
+                {
+                    "value": "268210",
+                    "text": "Manufacture of asphalt and roofing felt"
+                },
+                {
+                    "value": "505010",
+                    "text": "Service stations without kiosk"
+                },
+                {
+                    "value": "505020",
+                    "text": "Service stations with kiosk"
+                },
+                {
+                    "value": "266600",
+                    "text": "Manufacture of other articles of concrete"
+                },
+                {
+                    "value": "266300",
+                    "text": "Manufacture of ready-mixed concrete"
+                },
+                {
+                    "value": "925300",
+                    "text": "Botanical and zoological gardens and nature reserves activities"
+                },
+                {
+                    "value": "633010",
+                    "text": "Tourist agency activities"
+                },
+                {
+                    "value": "524701",
+                    "text": "Retail sale of books"
+                },
+                {
+                    "value": "514745",
+                    "text": "Wholesale of books and stationary"
+                },
+                {
+                    "value": "524867",
+                    "text": "Retail sale of office machinery"
+                },
+                {
+                    "value": "362220",
+                    "text": "Workshops engaged in manufacture of gold and silver articles and jewellers"
+                },
+                {
+                    "value": "524810",
+                    "text": "Retail sale of watches"
+                },
+                {
+                    "value": "524620",
+                    "text": "Retail sale of building materials"
+                },
+                {
+                    "value": "515310",
+                    "text": "Wholesale of wood and construction material"
+                },
+                {
+                    "value": "401100",
+                    "text": "Production of electricity"
+                },
+                {
+                    "value": "312010",
+                    "text": "Manufacture of electric distribution and control boards"
+                },
+                {
+                    "value": "312090",
+                    "text": "Manufacture of electric switches"
+                },
+                {
+                    "value": "524510",
+                    "text": "Retail sale of electric household appliances"
+                },
+                {
+                    "value": "514310",
+                    "text": "Wholesale of white goods"
+                },
+                {
+                    "value": "527210",
+                    "text": "Repair of electrical household goods"
+                },
+                {
+                    "value": "514312",
+                    "text": "Warehouse for electrical equipment and electronic devices"
+                },
+                {
+                    "value": "316290",
+                    "text": "Manufacture of other electrical and electronic equipment n.e.c."
+                },
+                {
+                    "value": "551011",
+                    "text": "Living rooms"
+                },
+                {
+                    "value": "524895",
+                    "text": "Sex shops"
+                },
+                {
+                    "value": "514610",
+                    "text": "Wholesale of pharmaceutical goods and nursing requisites"
+                },
+                {
+                    "value": "244200",
+                    "text": "Manufacture of pharmaceutical preparations "
+                },
+                {
+                    "value": "524825",
+                    "text": "Retail sale of photographic equipment"
+                },
+                {
+                    "value": "342000",
+                    "text": "Manufacture of bodies(coachwork) for motor vehicles; manufacture of trailers and semi-trailers"
+                },
+                {
+                    "value": "851100",
+                    "text": "Hospital activities"
+                },
+                {
+                    "value": "851320",
+                    "text": "Dental clinical technicians"
+                },
+                {
+                    "value": "853140",
+                    "text": "Residential institutions for physically or mentally handicapped adults"
+                },
+                {
+                    "value": "551010",
+                    "text": "Hotels"
+                },
+                {
+                    "value": "526002",
+                    "text": "Hunting and fishing equipment store"
+                },
+                {
+                    "value": "156110",
+                    "text": "Manufacture of grain mill products"
+                },
+                {
+                    "value": "513903",
+                    "text": "Flour storage"
+                },
+                {
+                    "value": "527100",
+                    "text": "Repair of boots"
+                },
+                {
+                    "value": "524310",
+                    "text": "Retail sale of footwear"
+                },
+                {
+                    "value": "514220",
+                    "text": "Wholesale of footwear"
+                },
+                {
+                    "value": "193010",
+                    "text": "Manufacture of footwear except of wooden shoes"
+                },
+                {
+                    "value": "524860",
+                    "text": "Retail sale of bicycles and mopeds"
+                },
+                {
+                    "value": "930210",
+                    "text": "Hairdressing saloons"
+                },
+                {
+                    "value": "926210",
+                    "text": "Sports clubs"
+                },
+                {
+                    "value": "157110",
+                    "text": "Manufacture of prepared feeds for agriculture and fur farming"
+                },
+                {
+                    "value": "155200",
+                    "text": "Manufacture of icecream"
+                },
+                {
+                    "value": "313000",
+                    "text": "Manufacture of insulated wire and cable"
+                },
+                {
+                    "value": "514311",
+                    "text": "Cable storage"
+                },
+                {
+                    "value": "152010",
+                    "text": "Production"
+                },
+                {
+                    "value": "50200",
+                    "text": "Operation of fish hatcheries and fish farms"
+                },
+                {
+                    "value": "159100",
+                    "text": "Manufacture of distilled potable alcoholic beverages"
+                },
+                {
+                    "value": "513410",
+                    "text": "Wholesale of beer and soft drinks"
+                },
+                {
+                    "value": "159800",
+                    "text": "Production of mineral waters and soft drinks"
+                },
+                {
+                    "value": "153100",
+                    "text": "Processing and preserving of potatoes"
+                },
+                {
+                    "value": "927100",
+                    "text": "Gambling and betting"
+                },
+                {
+                    "value": "525090",
+                    "text": "Other retail sale of second-hand goods"
+                },
+                {
+                    "value": "752402",
+                    "text": "Building not in use"
+                },
+                {
+                    "value": "403000",
+                    "text": "Steam and hot water supply"
+                },
+                {
+                    "value": "521130",
+                    "text": "Supermarkets"
+                },
+                {
+                    "value": "923400",
+                    "text": "Other entertainment activities n.e.c."
+                },
+                {
+                    "value": "527300",
+                    "text": "Repair of watches and clocks"
+                },
+                {
+                    "value": "335000",
+                    "text": "Manufacture of watches and clocks"
+                },
+                {
+                    "value": "515500",
+                    "text": "Wholesale of chemical products"
+                },
+                {
+                    "value": "263000",
+                    "text": "Manufacture of ceramic tiles and flags"
+                },
+                {
+                    "value": "262200",
+                    "text": "Manufacture of ceramic sanitary fixtures "
+                },
+                {
+                    "value": "515100",
+                    "text": "Wholesale of solid"
+                },
+                {
+                    "value": "171000",
+                    "text": "Preparation and spinning of textile fibres"
+                },
+                {
+                    "value": "252110",
+                    "text": "Manufacture of plates"
+                },
+                {
+                    "value": "266601",
+                    "text": "Crushed stone production facility"
+                },
+                {
+                    "value": "921300",
+                    "text": "Motion picture projection"
+                },
+                {
+                    "value": "913100",
+                    "text": "Activities of religious institutions and organisations"
+                },
+                {
+                    "value": "205120",
+                    "text": "Manufacture of coffins"
+                },
+                {
+                    "value": "515319",
+                    "text": "Stone and concrete products warehouse"
+                },
+                {
+                    "value": "268220",
+                    "text": "Manufacture of rockwool"
+                },
+                {
+                    "value": "515316",
+                    "text": "Glass storage"
+                },
+                {
+                    "value": "261100",
+                    "text": "Manufacture of flat glass"
+                },
+                {
+                    "value": "454420",
+                    "text": "Glazing"
+                },
+                {
+                    "value": "261300",
+                    "text": "Manufacture of hollow glass"
+                },
+                {
+                    "value": "524899",
+                    "text": "Retail sale of other goods"
+                },
+                {
+                    "value": "514790",
+                    "text": "Wholesale of other household goods"
+                },
+                {
+                    "value": "262100",
+                    "text": "Manufacture of ceramic household and ornamental articles"
+                },
+                {
+                    "value": "526000",
+                    "text": "Household chemicals store"
+                },
+                {
+                    "value": "12400",
+                    "text": "Farming of poultry"
+                },
+                {
+                    "value": "12110",
+                    "text": "Farming of dairy cattle"
+                },
+                {
+                    "value": "513700",
+                    "text": "Wholesale of coffee"
+                },
+                {
+                    "value": "553020",
+                    "text": "Cafeterias"
+                },
+                {
+                    "value": "151311",
+                    "text": "Tinned food industry"
+                },
+                {
+                    "value": "801010",
+                    "text": "Primary education"
+                },
+                {
+                    "value": "205200",
+                    "text": "Manufacture of articles of cork"
+                },
+                {
+                    "value": "551012",
+                    "text": "Apartment building (Part of the building)"
+                },
+                {
+                    "value": "365001",
+                    "text": "Cosmetics industry"
+                },
+                {
+                    "value": "752401",
+                    "text": "Crematorium"
+                },
+                {
+                    "value": "251200",
+                    "text": "Retreading and rebuilding of rubber tyres"
+                },
+                {
+                    "value": "514313",
+                    "text": "Warehouse for rubber products"
+                },
+                {
+                    "value": "251300",
+                    "text": "Manufacture of other rubber products "
+                },
+                {
+                    "value": "524835",
+                    "text": "Art shops"
+                },
+                {
+                    "value": "323020",
+                    "text": "Manufacture of loudspeakers"
+                },
+                {
+                    "value": "552200",
+                    "text": "Camping sites"
+                },
+                {
+                    "value": "524440",
+                    "text": "Retail sale of kitchen utensils"
+                },
+                {
+                    "value": "514410",
+                    "text": "Wholesale of china and glassware"
+                },
+                {
+                    "value": "515311",
+                    "text": "Cold storage facility at temperatures below zero"
+                },
+                {
+                    "value": "515312",
+                    "text": "Fuel terminal"
+                },
+                {
+                    "value": "366310",
+                    "text": "Manufacture of candles"
+                },
+                {
+                    "value": "351100",
+                    "text": "Building and repairing of ships"
+                },
+                {
+                    "value": "853215",
+                    "text": "Kindergartens"
+                },
+                {
+                    "value": "524240",
+                    "text": "Retail sale of baby articles and children's clothing"
+                },
+                {
+                    "value": "524885",
+                    "text": "Retail sale of pet animals"
+                },
+                {
+                    "value": "151310",
+                    "text": "Production of prepared meat dishes"
+                },
+                {
+                    "value": "246200",
+                    "text": "Manufacture of glues and gelatine"
+                },
+                {
+                    "value": "524875",
+                    "text": "Florist's shops"
+                },
+                {
+                    "value": "159700",
+                    "text": "Manufacture of malt"
+                },
+                {
+                    "value": "151200",
+                    "text": "Production"
+                },
+                {
+                    "value": "852000",
+                    "text": "Veterinary activities"
+                },
+                {
+                    "value": "286310",
+                    "text": "Manufacture of locks"
+                },
+                {
+                    "value": "366200",
+                    "text": "Manufacture of brooms and brushes"
+                },
+                {
+                    "value": "246100",
+                    "text": "Manufacture of explosives"
+                },
+                {
+                    "value": "515315",
+                    "text": "Explosives warehouse"
+                },
+                {
+                    "value": "515317",
+                    "text": "Mattress warehouse"
+                },
+                {
+                    "value": "361500",
+                    "text": "Manufacture of mattresses"
+                },
+                {
+                    "value": "153200",
+                    "text": "Manufacture of fruit and vegetable juice"
+                },
+                {
+                    "value": "158700",
+                    "text": "Manufacture of condiments an seasonings"
+                },
+                {
+                    "value": "158500",
+                    "text": "Manufacture of macaroni"
+                },
+                {
+                    "value": "211201",
+                    "text": "Waste and old paper processing"
+                },
+                {
+                    "value": "930400",
+                    "text": "Physical well-being activities"
+                },
+                {
+                    "value": "523200",
+                    "text": "Retail sale of medical and orthopaedic goods"
+                },
+                {
+                    "value": "515200",
+                    "text": "Wholesale of metals and metal ores"
+                },
+                {
+                    "value": "271000",
+                    "text": "Manufacture of basic iron and steel and of ferro alloys"
+                },
+                {
+                    "value": "371000",
+                    "text": "Recycling of metal waste and scrap"
+                },
+                {
+                    "value": "287510",
+                    "text": "Manufacture metal sign plates"
+                },
+                {
+                    "value": "281200",
+                    "text": "Manufacture of builders carpentry and joinery of metal"
+                },
+                {
+                    "value": "285100",
+                    "text": "Treatment and coating of metals"
+                },
+                {
+                    "value": "275100",
+                    "text": "Casting of iron"
+                },
+                {
+                    "value": "281100",
+                    "text": "Manufacture of metal structures and parts of structures"
+                },
+                {
+                    "value": "268290",
+                    "text": "Manufacture of other non-metallic mineral products except asphalt"
+                },
+                {
+                    "value": "515321",
+                    "text": "Warehouse for non-combustible liquids"
+                },
+                {
+                    "value": "524870",
+                    "text": "Retail sale of telecommunications equipment"
+                },
+                {
+                    "value": "504000",
+                    "text": "Wholesale and retail sale"
+                },
+                {
+                    "value": "502010",
+                    "text": "General repair shops"
+                },
+                {
+                    "value": "502050",
+                    "text": "Motor vehicle painters"
+                },
+                {
+                    "value": "501020",
+                    "text": "Retail sale of motorvehicles"
+                },
+                {
+                    "value": "501010",
+                    "text": "Wholesale of motorvehicles"
+                },
+                {
+                    "value": "501030",
+                    "text": "Car wash"
+                },
+                {
+                    "value": "502090",
+                    "text": "Other motor vehicle services"
+                },
+                {
+                    "value": "341000",
+                    "text": "Manufacture of motor vehicles"
+                },
+                {
+                    "value": "503020",
+                    "text": "Retail sale of motor vehicle parts and accessories"
+                },
+                {
+                    "value": "503010",
+                    "text": "Wholesale of motor vehicle parts and accessories"
+                },
+                {
+                    "value": "552100",
+                    "text": "Youth hostels"
+                },
+                {
+                    "value": "201012",
+                    "text": "Other timber processing"
+                },
+                {
+                    "value": "900220",
+                    "text": "Treatment of other waste"
+                },
+                {
+                    "value": "925200",
+                    "text": "Museum activities and preservation of historical sites and buildings"
+                },
+                {
+                    "value": "524530",
+                    "text": "Retail sale of records"
+                },
+                {
+                    "value": "524540",
+                    "text": "Retail sale of musical instruments"
+                },
+                {
+                    "value": "363000",
+                    "text": "Manufacture of musical instruments"
+                },
+                {
+                    "value": "332090",
+                    "text": "Manufacture of other measuring and checking equipment"
+                },
+                {
+                    "value": "524850",
+                    "text": "Retail sale of toys and games"
+                },
+                {
+                    "value": "514740",
+                    "text": "Wholesale of of toys and games"
+                },
+                {
+                    "value": "365000",
+                    "text": "Manufacture of games and toys"
+                },
+                {
+                    "value": "514705",
+                    "text": "Wholesale of furniture"
+                },
+                {
+                    "value": "524410",
+                    "text": "Retail sale of furniture"
+                },
+                {
+                    "value": "191000",
+                    "text": "Dressing and tanning of leather"
+                },
+                {
+                    "value": "181000",
+                    "text": "Manufacture of leather clothes"
+                },
+                {
+                    "value": "524320",
+                    "text": "Retail sale of leather goods"
+                },
+                {
+                    "value": "514750",
+                    "text": "Wholesale of suitcases"
+                },
+                {
+                    "value": "748740",
+                    "text": "Activities of fair"
+                },
+                {
+                    "value": "515314",
+                    "text": "Warehouse for paper and cardboard products"
+                },
+                {
+                    "value": "211200",
+                    "text": "Manufacture of paper and paperboard"
+                },
+                {
+                    "value": "212300",
+                    "text": "Manufacture of paper stationary"
+                },
+                {
+                    "value": "158110",
+                    "text": "Manufacture of bread and other bakery products"
+                },
+                {
+                    "value": "522410",
+                    "text": "Retail sale of bread"
+                },
+                {
+                    "value": "513600",
+                    "text": "Wholesale of bread"
+                },
+                {
+                    "value": "651100",
+                    "text": "Central banking"
+                },
+                {
+                    "value": "523310",
+                    "text": "Perfumery shops"
+                },
+                {
+                    "value": "514500",
+                    "text": "Wholesale of perfume and cosmetics"
+                },
+                {
+                    "value": "245200",
+                    "text": "Manufacture of perfumes"
+                },
+                {
+                    "value": "632120",
+                    "text": "Operation of parking lots or garages"
+                },
+                {
+                    "value": "314000",
+                    "text": "Manufacture of accumulators"
+                },
+                {
+                    "value": "514709",
+                    "text": "Soft furniture warehouse"
+                },
+                {
+                    "value": "205191",
+                    "text": "Manufacture of other products of wood n.e.c."
+                },
+                {
+                    "value": "526001",
+                    "text": "Linen and haberdashery store"
+                },
+                {
+                    "value": "930110",
+                    "text": "Laundering for industrial or commercial clients"
+                },
+                {
+                    "value": "155110",
+                    "text": "Operation of dairies and cheese making"
+                },
+                {
+                    "value": "252410",
+                    "text": "Manufacture of office and school supplies of plastic "
+                },
+                {
+                    "value": "252420",
+                    "text": "Manufacture of tableware and kitchenware of plastic"
+                },
+                {
+                    "value": "252390",
+                    "text": "Manufacture of other builders' ware of plastic"
+                },
+                {
+                    "value": "252130",
+                    "text": "Manufacture of bars and profiles of plastics"
+                },
+                {
+                    "value": "252200",
+                    "text": "Manufacture of plastic packaging goods"
+                },
+                {
+                    "value": "514314",
+                    "text": "Warehouse for plastic products and materials"
+                },
+                {
+                    "value": "252120",
+                    "text": "Manufacture of pipes"
+                },
+                {
+                    "value": "514420",
+                    "text": "Wholesale of cleaning materials"
+                },
+                {
+                    "value": "245120",
+                    "text": "Manufacture of polishing and cleaning preparations"
+                },
+                {
+                    "value": "752400",
+                    "text": "Police"
+                },
+                {
+                    "value": "515318",
+                    "text": "Warehouse for foam"
+                },
+                {
+                    "value": "361501",
+                    "text": "Production of foam"
+                },
+                {
+                    "value": "641100",
+                    "text": "National post activities"
+                },
+                {
+                    "value": "524820",
+                    "text": "Retail sale of glasses"
+                },
+                {
+                    "value": "201020",
+                    "text": "Impregnation of wood"
+                },
+                {
+                    "value": "514706",
+                    "text": "Timber and timber products warehouse (except for woodchip and fibreboard products)"
+                },
+                {
+                    "value": "201011",
+                    "text": "Timber dryer"
+                },
+                {
+                    "value": "203030",
+                    "text": "Manufacture of prefabricated buildings or elements thereof"
+                },
+                {
+                    "value": "514708",
+                    "text": "Warehouse for woodchip and fibreboard products"
+                },
+                {
+                    "value": "202001",
+                    "text": "Manufacture of veneer sheets; manufactures of plywood"
+                },
+                {
+                    "value": "205190",
+                    "text": "Manufacture of other products of wood n.e.c."
+                },
+                {
+                    "value": "410001",
+                    "text": "Pumping station"
+                },
+                {
+                    "value": "174010",
+                    "text": "Manufacture of sails"
+                },
+                {
+                    "value": "513100",
+                    "text": "Wholesale of fruit and vegetables"
+                },
+                {
+                    "value": "153300",
+                    "text": "Processing and preserving of fruit and vegetables"
+                },
+                {
+                    "value": "203020",
+                    "text": "Manufacture of wooden goods to be used for buildings"
+                },
+                {
+                    "value": "518800",
+                    "text": "Wholesale of agricultural machinery and accessories and implements"
+                },
+                {
+                    "value": "293230",
+                    "text": "Manufacture of agricultural and forestry machinery n.e.c."
+                },
+                {
+                    "value": "158920",
+                    "text": "Manufacture of other products n.e.c."
+                },
+                {
+                    "value": "922020",
+                    "text": "Radio activities"
+                },
+                {
+                    "value": "925110",
+                    "text": "Public libraries"
+                },
+                {
+                    "value": "524700",
+                    "text": "Retail sale of books"
+                },
+                {
+                    "value": "553090",
+                    "text": "Community centres"
+                },
+                {
+                    "value": "524610",
+                    "text": "Retail sale of hardware"
+                },
+                {
+                    "value": "515400",
+                    "text": "Wholesale of hardware"
+                },
+                {
+                    "value": "251100",
+                    "text": "Manufacture of rubber tyres and tubes"
+                },
+                {
+                    "value": "502060",
+                    "text": "Tyre and tube repair"
+                },
+                {
+                    "value": "632300",
+                    "text": "Airports etc."
+                },
+                {
+                    "value": "553010",
+                    "text": "Restaurants"
+                },
+                {
+                    "value": "524230",
+                    "text": "Retail sale of men's and ladies' clothing"
+                },
+                {
+                    "value": "514210",
+                    "text": "Wholesale of clothing"
+                },
+                {
+                    "value": "182200",
+                    "text": "Manufacture of outerwear"
+                },
+                {
+                    "value": "201010",
+                    "text": "Sawmilling and planning of wood"
+                },
+                {
+                    "value": "853245",
+                    "text": "Rehabilitation institutions"
+                },
+                {
+                    "value": "930401",
+                    "text": "Physical well-being activities"
+                },
+                {
+                    "value": "245110",
+                    "text": "Manufacture of soap and detergents"
+                },
+                {
+                    "value": "177100",
+                    "text": "Manufacture of knitted and crocheted hosiery"
+                },
+                {
+                    "value": "513901",
+                    "text": "Salt storage"
+                },
+                {
+                    "value": "514707",
+                    "text": "Veneer and plywood warehouse"
+                },
+                {
+                    "value": "202000",
+                    "text": "Manufacture of veneer sheets; manufactures of plywood"
+                },
+                {
+                    "value": "514735",
+                    "text": "Wholesale of sports goods"
+                },
+                {
+                    "value": "926110",
+                    "text": "Sports centres and public swimming baths"
+                },
+                {
+                    "value": "524845",
+                    "text": "Retail sale of sports goods"
+                },
+                {
+                    "value": "364000",
+                    "text": "Manufacture of sports goods"
+                },
+                {
+                    "value": "513902",
+                    "text": "Sugar storage"
+                },
+                {
+                    "value": "524830",
+                    "text": "Gift shops"
+                },
+                {
+                    "value": "522420",
+                    "text": "Retail sale of chocolate and sugar confectionery"
+                },
+                {
+                    "value": "158400",
+                    "text": "Manufacture of cocao; chocolate and sugar confectionery"
+                },
+                {
+                    "value": "513300",
+                    "text": "Wholesale of daity produce"
+                },
+                {
+                    "value": "154200",
+                    "text": "Manufacture of refined oils and fats"
+                },
+                {
+                    "value": "923110",
+                    "text": "Live theatrical presentations"
+                },
+                {
+                    "value": "158600",
+                    "text": "Processing of tea and coffee"
+                },
+                {
+                    "value": "524100",
+                    "text": "Retail sale of textiles"
+                },
+                {
+                    "value": "514100",
+                    "text": "Wholesale of textiles"
+                },
+                {
+                    "value": "174020",
+                    "text": "Manufacture of made-up furnishing articles"
+                },
+                {
+                    "value": "173000",
+                    "text": "Finishing of textiles"
+                },
+                {
+                    "value": "372000",
+                    "text": "Recycling of non-metal waste and scrap"
+                },
+                {
+                    "value": "922010",
+                    "text": "Television activities"
+                },
+                {
+                    "value": "264000",
+                    "text": "Manufacture of bricks"
+                },
+                {
+                    "value": "512100",
+                    "text": "Wholesale of grain"
+                },
+                {
+                    "value": "521110",
+                    "text": "Grocer's shops"
+                },
+                {
+                    "value": "521210",
+                    "text": "Varity stores"
+                },
+                {
+                    "value": "513890",
+                    "text": "Other specialized wholesale of food"
+                },
+                {
+                    "value": "513900",
+                    "text": "Non-specialized wholesale of food"
+                },
+                {
+                    "value": "154300",
+                    "text": "Manufacture of margarine and similar edible fats"
+                },
+                {
+                    "value": "361110",
+                    "text": "Manufacture of chairs and seats except of upholstery"
+                },
+                {
+                    "value": "512400",
+                    "text": "Wholesale of hides"
+                },
+                {
+                    "value": "287300",
+                    "text": "Manufacture of wire products"
+                },
+                {
+                    "value": "401200",
+                    "text": "Transmission of electricity"
+                },
+                {
+                    "value": "222100",
+                    "text": "Printing of newspapers"
+                },
+                {
+                    "value": "222300",
+                    "text": "Bookbinding and finishing"
+                },
+                {
+                    "value": "211100",
+                    "text": "Manufacture of pulp"
+                },
+                {
+                    "value": "265100",
+                    "text": "Manufacture of cement"
+                },
+                {
+                    "value": "522600",
+                    "text": "Retail sale of tobacco products"
+                },
+                {
+                    "value": "513500",
+                    "text": "Wholesale of tobacco products"
+                },
+                {
+                    "value": "160000",
+                    "text": "Manufacture of tobacco products"
+                },
+                {
+                    "value": "752500",
+                    "text": "Fire service activities"
+                },
+                {
+                    "value": "515313",
+                    "text": "Peat and peat briquette warehouse"
+                },
+                {
+                    "value": "103000",
+                    "text": "Extraction and agglomeration of peat"
+                },
+                {
+                    "value": "552390",
+                    "text": "Other short-stay lodging"
+                },
+                {
+                    "value": "853150",
+                    "text": "Residential nursing homes and sheltered homes"
+                },
+                {
+                    "value": "156200",
+                    "text": "Manufacture of starches and starch products"
+                },
+                {
+                    "value": "286200",
+                    "text": "Manufacture of tools"
+                },
+                {
+                    "value": "518100",
+                    "text": "Wholesale of machine tools for working melat and wood"
+                },
+                {
+                    "value": "295690",
+                    "text": "Manufacture of industrial machinery n.e.c."
+                },
+                {
+                    "value": "926111",
+                    "text": "Sports centres and public swimming baths"
+                },
+                {
+                    "value": "732000",
+                    "text": "Research and experimental development on social sciences and humanities"
+                },
+                {
+                    "value": "524801",
+                    "text": "Retail sale of carpets"
+                },
+                {
+                    "value": "514710",
+                    "text": "Wholesale of carpets"
+                },
+                {
+                    "value": "175100",
+                    "text": "Manufacture of carpets and rugs"
+                },
+                {
+                    "value": "524450",
+                    "text": "Retail sale of articles for lighting"
+                },
+                {
+                    "value": "752320",
+                    "text": "Prison administration and operation"
+                },
+                {
+                    "value": "174022",
+                    "text": "Cotton wool and felt industry"
+                },
+                {
+                    "value": "410000",
+                    "text": "Collection"
+                },
+                {
+                    "value": "159400",
+                    "text": "Manufacture of cider and other fruit wines"
+                },
+                {
+                    "value": "714010",
+                    "text": "Renting of videotapes and DVDs"
+                },
+                {
+                    "value": "156111",
+                    "text": "Grain dryer"
+                },
+                {
+                    "value": "514101",
+                    "text": "Warehouse for bedspreads and pillows"
+                },
+                {
+                    "value": "174021",
+                    "text": "Production of bedspreads and pillows"
+                },
+                {
+                    "value": "527420",
+                    "text": "Locksmiths"
+                },
+                {
+                    "value": "241500",
+                    "text": "Manufacture of fertilizers etc."
+                },
+                {
+                    "value": "515501",
+                    "text": "Fertiliser warehouse"
+                },
+                {
+                    "value": "515320",
+                    "text": "Wholesale of varnish"
+                },
+                {
+                    "value": "243000",
+                    "text": "Manufacture of paints"
+                },
+                {
+                    "value": "274500",
+                    "text": "Other non-ferrous metal production"
+                },
+                {
+                    "value": "454410",
+                    "text": "Painting"
+                },
+                {
+                    "value": "159600",
+                    "text": "Manufacture of beer"
+                },
+                {
+                    "value": "524231",
+                    "text": "Sewing atelier"
+                },
+                {
+                    "value": "554020",
+                    "text": "Discotheques and nightclubs"
+                }
+            ]
         },
         components: {
           droplist: RactiveDroplist

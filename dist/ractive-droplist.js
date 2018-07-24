@@ -79,8 +79,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+function uuid(){
+    // http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript/21963136#21963136
+    var lut =["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "0a", "0b", "0c", "0d", "0e", "0f", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "1a", "1b", "1c", "1d", "1e", "1f", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "2a", "2b", "2c", "2d", "2e", "2f", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "3a", "3b", "3c", "3d", "3e", "3f", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "4a", "4b", "4c", "4d", "4e", "4f", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "5a", "5b", "5c", "5d", "5e", "5f", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "6a", "6b", "6c", "6d", "6e", "6f", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "7a", "7b", "7c", "7d", "7e", "7f", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "8a", "8b", "8c", "8d", "8e", "8f", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "9a", "9b", "9c", "9d", "9e", "9f", "a0", "a1", "a2", "a3", "a4", "a5", "a6", "a7", "a8", "a9", "aa", "ab", "ac", "ad", "ae", "af", "b0", "b1", "b2", "b3", "b4", "b5", "b6", "b7", "b8", "b9", "ba", "bb", "bc", "bd", "be", "bf", "c0", "c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "ca", "cb", "cc", "cd", "ce", "cf", "d0", "d1", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9", "da", "db", "dc", "dd", "de", "df", "e0", "e1", "e2", "e3", "e4", "e5", "e6", "e7", "e8", "e9", "ea", "eb", "ec", "ed", "ee", "ef", "f0", "f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "f9", "fa", "fb", "fc", "fd", "fe", "ff"]; var d0 = Math.random()*0x100000000|0; var d1 = Math.random()*0x100000000|0; var d2 = Math.random()*0x100000000|0; var d3 = Math.random()*0x100000000|0; return lut[d0&0xff]+lut[d0>>8&0xff]+lut[d0>>16&0xff]+lut[d0>>24&0xff]+'-'+ lut[d1&0xff]+lut[d1>>8&0xff]+'-'+lut[d1>>16&0x0f|0x40]+lut[d1>>24&0xff]+'-'+ lut[d2&0x3f|0x80]+lut[d2>>8&0xff]+'-'+lut[d2>>16&0xff]+lut[d2>>24&0xff]+ lut[d3&0xff]+lut[d3>>8&0xff]+lut[d3>>16&0xff]+lut[d3>>24&0xff];
+}
+
 /* harmony default export */ __webpack_exports__["default"] = (Ractive.extend({
-    template: {v:4,t:[{t:7,e:"div",m:[{n:"class",f:[{t:2,r:"class"}],t:13},{n:"class-hidden",t:13,f:[{t:2,r:"fp.hidden"}]}],f:[{t:4,f:[{t:7,e:"label",m:[{t:13,n:"class",f:"oh nowrap-ellipsis",g:1}],f:[{t:4,f:[{t:7,e:"span",m:[{t:13,n:"class",f:"required",g:1}],f:["*"]}],n:50,r:"fp.required"},{t:2,r:"label"}]}],n:50,r:"label"}," ",{t:7,e:"input",m:[{n:"type",f:"text",t:13},{n:"name",f:[{t:2,r:"name"}],t:13},{n:"value",f:[{t:2,r:"value"}],t:13},{n:"class",f:"hidden-out-of-view",t:13},{n:"class-required",t:13,f:[{t:2,r:"fp.required"}]}]}," ",{t:7,e:"div",m:[{t:13,n:"class",f:"droplist btn-group",g:1},{n:"class-open",t:13,f:[{t:2,r:"menu_open"}]},{n:["actionoutside"],t:70,f:{r:["@this"],s:"[_0.set(\"menu_open\",false)]"}}],f:[{t:7,e:"button",m:[{t:13,n:"class",f:"btn btn-default dropdown-toggle",g:1},{n:"type",f:"button",t:13,g:1},{n:"aria-haspopup",f:"true",t:13,g:1},{n:"aria-expanded",f:[{t:2,x:{r:["menu_open"],s:"_0?\"true\":\"false\""}}],t:13},{n:["click"],t:70,f:"toggle_menu"},{t:2,x:{r:["fp.disabled"],s:"_0?\"disabled\":\"\""}}],f:[{t:7,e:"span",m:[{t:13,n:"class",f:"selected-text",g:1}],f:[{t:3,x:{r:["selected_text"],s:"_0?_0:\"&nbsp;\""}}]}," ",{t:7,e:"span",m:[{t:13,n:"class",f:"caret",g:1}]}]}," ",{t:7,e:"ul",m:[{t:13,n:"class",f:"dropdown-menu js-input-container",g:1}],f:[{t:7,e:"li",m:[{t:13,n:"style",f:"padding:5px;;",g:1}],f:[{t:7,e:"input",m:[{n:"type",f:"text",t:13},{n:"class",f:"form-control",t:13},{n:"autocomplete",f:"off",t:13},{n:"value",f:[{t:2,r:"text_value"}],t:13},{n:["keydown"],t:70,f:"keydown"},{n:"placeholder",f:[{t:2,r:"type_to_search"}],t:13}]}]}]}," ",{t:7,e:"ul",m:[{t:13,n:"class",f:"dropdown-menu js-drop-list",g:1},{n:"style",f:["max-height: ",{t:2,r:"maxheight"},"px; ",{t:2,x:{r:["show_list_on_open","text_value"],s:"_0||_1?\"\":\"height:0px;\""}}],t:13}],f:[{t:4,f:[{t:7,e:"li",m:[{n:"class-selected",t:13,f:[{t:2,x:{r:["value","~/value"],s:"_0==_1"}}]},{n:"class-active",t:13,f:[{t:2,x:{r:["value","active_value"],s:"_0==_1"}}]},{n:["click"],t:70,f:"set_selected"},{n:["mouseenter"],t:70,f:"set_active"},{n:["mouseup"],t:70,f:{r:["@this","set_active"],s:"[_0.find(\"input\").focus(),_1]"}}],f:[{t:8,r:"content"}]}],n:52,r:"filtered"},{t:4,f:[{t:7,e:"li",f:[{t:2,x:{r:["text_value","no_results"],s:"_0?_1:\"\""}}]}],n:51,l:1}]}]}," ",{t:7,e:"label",m:[{t:13,n:"style",f:"display:none;;",g:1},{t:13,n:"class",f:"error",g:1},{n:"for",f:[{t:2,r:"name"}],t:13}]}]}],e:{"[_0.set(\"menu_open\",false)]":function (_0){return([_0.set("menu_open",false)]);},"_0?\"true\":\"false\"":function (_0){return(_0?"true":"false");},"_0?\"disabled\":\"\"":function (_0){return(_0?"disabled":"");},"_0?_0:\"&nbsp;\"":function (_0){return(_0?_0:"&nbsp;");},"_0||_1?\"\":\"height:0px;\"":function (_0,_1){return(_0||_1?"":"height:0px;");},"_0==_1":function (_0,_1){return(_0==_1);},"[_0.find(\"input\").focus(),_1]":function (_0,_1){return([_0.find("input").focus(),_1]);},"_0?_1:\"\"":function (_0,_1){return(_0?_1:"");}}},
+    template: {v:4,t:[{t:7,e:"div",m:[{t:13,n:"class",f:"dropdown show",g:1}],f:[{t:7,e:"button",m:[{t:13,n:"class",f:"btn btn-secondary dropdown-toggle",g:1},{n:"type",f:"button",t:13,g:1},{n:"id",f:"dropdownMenuButton",t:13,g:1},{n:"data-toggle",f:"dropdown",t:13,g:1},{n:"aria-haspopup",f:"true",t:13,g:1},{n:"aria-expanded",f:"true",t:13,g:1}],f:["Dropdown button"]}," ",{t:7,e:"div",m:[{t:13,n:"style",f:"position: absolute; top: 40px; left: 0px;;",g:1},{t:13,n:"class",f:"dropdown-menu show",g:1}],f:[{t:7,e:"a",m:[{t:13,n:"class",f:"dropdown-item",g:1},{n:"href",f:"#",t:13,g:1}],f:["Action"]}," ",{t:7,e:"a",m:[{t:13,n:"class",f:"dropdown-item",g:1},{n:"href",f:"#",t:13,g:1}],f:["Another action"]}," ",{t:7,e:"a",m:[{t:13,n:"class",f:"dropdown-item",g:1},{n:"href",f:"#",t:13,g:1}],f:["Something else here"]}]}]}]},
     css: "",
     data: function() {
         return {
@@ -139,7 +145,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return (toret.length > 0) ? toret[0][this.get('as_text')] : '';
         },
         name: function(){
-            return 'dl_'+_u.uuid();
+            return 'dl_'+uuid();
         }
     },
     on: {
@@ -193,7 +199,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     menu_open: false
                 });
                 this.fire('change', ctx, {selected_line: ctx.get()});
-                this.find('button.dropdown-toggle').focus();
+                this.find('button.droplist-toggle').focus();
             }
         },
         set_selected: function(ctx) {
@@ -202,7 +208,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 menu_open: false
             });
             this.fire('change', ctx, {selected_line: ctx.get()});
-            this.find('button.dropdown-toggle').focus();
+            this.find('button.droplist-toggle').focus();
         },
         set_active: function(ctx) {
             this.set('active_value', ctx.get('value'));
@@ -220,9 +226,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var dist_top = droplist.getBoundingClientRect().top;
             var dist_bottom = window.innerHeight - droplist.getBoundingClientRect().top - droplist.offsetHeight;
             if(dist_bottom - height < 0 && dist_top - height > 0){
-                droplist.classList.add('dropup');
+                droplist.classList.add('droplistup');
             }else{
-                droplist.classList.remove('dropup');
+                droplist.classList.remove('droplistup');
             }
             this.find('.js-input-container > li > input').focus();
             if (this.find('li.selected')) {
@@ -239,6 +245,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         change: function(){
             if(this.get('fp_event')){
                 this.exportFpData(this.find('input'), this.get('fp_event'));
+            }
+        }
+    },
+    events: {
+        actionoutside: function(node, fire){
+            function escHandler(event){
+                if(event.keyCode == 27){
+                    fire({node: node, original: event});
+                }
+            }
+            function clickHandler(event){
+                if(!node.contains(event.target)){
+                    fire({node: node, original: event});
+                }
+            }
+            document.addEventListener('click', clickHandler);
+            document.addEventListener('keydown', escHandler);
+            return {
+                teardown: function(){
+                    document.removeEventListener('click', clickHandler);
+                    document.removeEventListener('keydown', escHandler);
+                }
             }
         }
     }
