@@ -1,19 +1,50 @@
 <style>
-
+    .hidden-out-of-view {position: absolute; top: -9999px; left: -9999px;}
+    .droplist .btn{background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-size: 8px 10px; background-position: right 0.375rem center;}
+    .droplist > .btn-secondary {padding-right:14px; overflow: hidden; text-overflow: ellipsis;}
+    .droplist .droplist-results {margin-top: 5px; height: auto; overflow-x: hidden; border-top: none;}
+    .droplist .dropdown-menu a.active {background-color: #eee; color: #212529}
+    .droplist .dropdown-menu a.selected,  .droplist .dropdown-menu a.active.selected {background-color: #ccc;}
+    .droplist .dropdown-menu[x-placement="top-start"] .droplist-results {margin-bottom: 38px; margin-top:0px;}
+    .droplist .dropdown-menu[x-placement="top-start"] .form-group {margin-bottom: 0px; position: absolute; bottom: 5px; width: 100%;}
+    .droplist mark {background-color: #ffffcc; padding: 0;}
+    input.is-invalid ~ .droplist > button  {border: 1px solid red;}
 </style>
 
-<div class="dropdown show">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    Dropdown button
-</button>
-<div class="dropdown-menu show" style="position: absolute; top: 40px; left: 0px;">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-</div>
+<div class="{{class}} droplist-container" class-hidden="fp.hidden">
+    {{#if label}}
+        <label class="oh nowrap-ellipsis {{fp.required ? 'required' : ''}}">
+            {{label}}
+        </label>
+    {{/if}}
+    <input type="text" name="{{name}}" value="{{value}}" class="hidden-out-of-view" droplist-validator-field {{fp.required ? 'required="true" data-rule-not-zeros="true"' : '' }} />
+    <div class="dropdown droplist" as-popper="{placement: 'bottom-start', enable_arrows: false}">
+        <button type="button" class="btn btn-sm btn-secondary w-100 text-left" popper-trigger aria-haspopup="true" aria-expanded="{{menu_open ? 'true' : 'false'}}" {{fp.disabled ? 'disabled' : ''}}>
+            {{{selected_text ? selected_text : '&nbsp;'}}}
+        </button>
+        <div class="dropdown-menu w-100 pb-1 pt-1" popper on-popper_before_open="" on-popper_open="['open_menu']" on-popper_before_close="" on-popper_close="['close_menu']">
+            <div class="form-group mb-0 pl-1 pr-1">
+                <input type="text" class="form-control" autocomplete="off" value="{{text_value}}" on-keydown="['keydown']" on-click="@event.stopPropagation()" placeholder="{{type_to_search}}" />
+            </div>
+            <div class="droplist-results" style="max-height: {{maxheight}}px; {{show_list_on_open || text_value ? '' :'height:0px; margin-top:0px;'}}">
+                {{#each filtered}}
+                    <a href="javascript:;" class="dropdown-item" class-selected="value == ~/value" class-active="value == active_value" on-click="['set_selected']" on-mouseenter="['set_active']" on-mouseup="@this.find('input').focus(), set_active">
+                        {{>content}}
+                    </a>
+                {{else}}
+                    <a href="javascript:;" class="dropdown-item">{{text_value ? no_results : ''}}</a>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+    <div error-holder-for="{{name}}"></div>
 </div>
 
 <script>
+
+    import Ractive from 'ractive';
+    import RactiveDecoratorsPopper from 'ractive-decorators-popper';
+    import scrollIntoView from 'scroll-into-view-if-needed';
 
     function uuid(){
         // http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript/21963136#21963136
@@ -24,28 +55,10 @@
         template: $TEMPLATE,
         css: $CSS,
         data: function() {
-            return {
-                no_results: 'No results',
-                type_to_search: 'Type here to search',
-                label: '',
-                class: '',
-                menu_open: false,
-                list: [],
-                value: '',
-                active_value: '',
-                text_value: '',
-                show_list_on_open: true,
-                as_value: 'value',
-                as_text: 'text',
-                maxheight: 210,
-                add_search: '',
-                fp: {
-                    required: false,
-                    hidden: false,
-                    disabled: false
-                },
-                fp_event: null
-            }
+            return {no_results: 'No Results', type_to_search: 'Type to search', label: '', class: '', menu_open: false, list: [], value: '', active_value: '', text_value: '', show_list_on_open: true, as_value: 'value', as_text: 'text', maxheight: 210, add_search: '', fp:{required: false, hidden:false, disabled: false}, fp_event: null}
+        },
+        decorators: {
+            popper: RactiveDecoratorsPopper
         },
         computed: {
             filtered: function() {
@@ -61,10 +74,16 @@
                     if(k.text.toUpperCase().indexOf(tosearch.toUpperCase()) >= 0 || k.add_search.toUpperCase().indexOf(tosearch.toUpperCase()) >= 0){
                         // Find mathed text from list based on text input.  We do that for text case. Matches both capital and lower case letters 
                         var search_text = new RegExp(tosearch, 'i').exec(k.text);
-                        if(search_text!= null){
-                            k.text_highlighted = k.text.replace(search_text[0], '<mark>'+search_text[0]+'</mark>');
+                        // TODO: Check this if else why needed now and not in the past
+                        if(search_text && search_text[0].length > 0){
+                            if(search_text!= null){
+                                k.text_highlighted = k.text.replace(search_text[0], '<mark>'+search_text[0]+'</mark>');
+                            }else{
+                                k.text_highlighted = k.text.replace(tosearch, '<mark>'+tosearch+'</mark>');
+                            }
+
                         }else{
-                            k.text_highlighted = k.text.replace(tosearch, '<mark>'+tosearch+'</mark>');
+                            k.text_highlighted = k.text
                         }
                         arr.push(k);
                     }
@@ -80,7 +99,17 @@
                 return (toret.length > 0) ? toret[0][this.get('as_text')] : '';
             },
             name: function(){
-                return 'dl_'+uuid();
+                return 'dl_'+ uuid();
+            }
+        },
+        observe: {
+            'filtered': {
+                handler: function(newValue, oldValue, keypath, idx){
+                    if(newValue){
+                        this.find('[popper]').decorator.popper.scheduleUpdate();
+                    }
+                },
+                init: false
             }
         },
         on: {
@@ -93,7 +122,7 @@
                     var active = this.get('active_value');
                     var toselect = '';
                     var active_found = false;
-                    // Find active li and then select previous or next li. If last li is selected, then select last li when down arrow pressed.
+                    // Find active a and then select previous or next a. If last a is selected, then select last a when down arrow pressed.
                     for (var i = 0; i < filtered.length; i++) {
                         if (filtered[i]['value'] == active) {
                             var pr = (k == 38) ? -1 : 1;
@@ -104,106 +133,58 @@
                     };
                     var value = active_found ? toselect : filtered.length > 0 ? filtered[0]['value'] : '';
                     this.set('active_value', value);
-                    var selected_li = this.find('li.active');
-                    var selected_li_offset_top = selected_li.offsetTop;
-                    var selected_li_height = selected_li.clientHeight;
-                    var list = this.find('.js-drop-list');
-                    // Up arrow keypress
-                    if(k === 38){
-                        // If next selected li is above current view, then scrollup
-                        if (selected_li_offset_top < list.scrollTop){
-                            list.scrollTop-=selected_li_height;
-                        }
-                    }
-                    // Down arrow keypress
-                    if(k === 40){
-                        // If next li is out of current view, then scrolldown.
-                        if (selected_li_offset_top +selected_li_height > list.offsetHeight+list.scrollTop){
-                            // If selected li is not the last one then scrolldown
-                            if(selected_li_offset_top + selected_li_height <= list.scrollHeight){
-                                list.scrollTop+=selected_li_height;
-                            }
-                        }
+                    var selected_a = this.find('a.active');
+                    var next_or_prev = (k === 38) ? 'previousSibling' : 'nextSibling';
+                    // Up / down arrow keypress
+                    if (selected_a && selected_a[next_or_prev]) {
+                        scrollIntoView(selected_a[next_or_prev], {
+                            block: 'nearest',
+                            inline: 'nearest'
+                        });
                     }
                 }
                 // Enter button pressed
                 if (k === 13) {
                     ctx.original.preventDefault();
-                    this.set({
-                        value: this.get('filtered').length == 1 ? this.get('filtered.0.value') : this.get('active_value'),
-                        menu_open: false
-                    });
+                    this.set('value', this.get('filtered').length == 1 ? this.get('filtered.0.value') : this.get('active_value'));
                     this.fire('change', ctx, {selected_line: ctx.get()});
-                    this.find('button.droplist-toggle').focus();
+                    this.find('[popper]').decorator.close();
+                    this.find('button[popper-trigger]').focus();
                 }
             },
             set_selected: function(ctx) {
-                this.set({
-                    value: ctx.get('value'),
-                    menu_open: false
-                });
+                this.set('value', ctx.get('value'));
                 this.fire('change', ctx, {selected_line: ctx.get()});
-                this.find('button.droplist-toggle').focus();
+                this.find('[popper]').decorator.close();
+                this.find('button[popper-trigger]').focus();
             },
             set_active: function(ctx) {
                 this.set('active_value', ctx.get('value'));
             },
             open_menu: function(ctx){
-                var droplist = this.find('.droplist.btn-group');
-                var list = this.find('.js-drop-list');
-                var input_container = this.find('.js-input-container');
                 this.set({
                     active_value: this.get('value'),
                     text_value: '',
                     menu_open: true
                 });
-                var height = list.offsetHeight + input_container.offsetHeight;
-                var dist_top = droplist.getBoundingClientRect().top;
-                var dist_bottom = window.innerHeight - droplist.getBoundingClientRect().top - droplist.offsetHeight;
-                if(dist_bottom - height < 0 && dist_top - height > 0){
-                    droplist.classList.add('droplistup');
-                }else{
-                    droplist.classList.remove('droplistup');
-                }
-                this.find('.js-input-container > li > input').focus();
-                if (this.find('li.selected')) {
-                    list.scrollTop = this.find('li.selected').offsetTop;
+                this.find('.form-group > input').focus();
+                if (this.find('a.selected')) {
+                    scrollIntoView(this.find('a.selected'), {
+                        scrollMode: 'if-needed',
+                        block: 'nearest',
+                        inline: 'nearest'
+                    });
                 }
             },
-            toggle_menu: function(ctx) {
-                if (this.get('menu_open') == false) {
-                    this.fire('open_menu', ctx);
-                } else {
-                    this.set('menu_open', false);
-                }
+            close_menu: function(){
+                this.set('menu_open', false);
             },
             change: function(){
                 if(this.get('fp_event')){
                     this.exportFpData(this.find('input'), this.get('fp_event'));
                 }
             }
-        },
-        events: {
-            actionoutside: function(node, fire){
-                function escHandler(event){
-                    if(event.keyCode == 27){
-                        fire({node: node, original: event});
-                    }
-                }
-                function clickHandler(event){
-                    if(!node.contains(event.target)){
-                        fire({node: node, original: event});
-                    }
-                }
-                document.addEventListener('click', clickHandler);
-                document.addEventListener('keydown', escHandler);
-                return {
-                    teardown: function(){
-                        document.removeEventListener('click', clickHandler);
-                        document.removeEventListener('keydown', escHandler);
-                    }
-                }
-            }
         }
     });
+
 </script>

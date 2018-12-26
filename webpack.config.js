@@ -1,49 +1,56 @@
-var path = require('path');
-var webpack = require('webpack');
-
-var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common');
-
-// Lazymode so we don't have to require Ractive in every component / endpoint / etc
-var providerPlugin = new webpack.ProvidePlugin({
-	Ractive: 'ractive'
-});
-
-// Minify javascript
-var minifyPlugin = new webpack.optimize.UglifyJsPlugin({
-	include: /\.min\.js$/,
-	compress: {
-		warnings: false
-	}
-});
+const webpack = require('webpack');
+const path = require('path');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-	module: {
-	  loaders: [
-	    {
-	      test: /\.ractive\.html$/,
-	      loaders: 'ractive-bin-loader'
-	    }
-	  ]
-	},
-	plugins: [
-		// providerPlugin,
-		minifyPlugin
-	],
-	/*
-	externals: {
-	  ractive: 'Ractive'
-	},
-	*/
-	target: 'web',
-	entry: {
-		'ractive-droplist': './src/ractive-droplist.ractive.html',
-		'ractive-droplist.min': './src/ractive-droplist.ractive.html'
-	},
-  	output: {
-	    filename: '[name].js',
-	    path: path.resolve(__dirname, 'dist'),
-	    library: "RactiveDroplist",
-	    libraryExport: "default",
-		libraryTarget: "umd"
-  	}
-};
+	node: false,
+	mode: 'production',
+    target: 'web',
+    context: path.resolve(__dirname, 'src'),
+    optimization: {
+        minimize: true,
+        minimizer: [new UglifyJsPlugin({
+            include: /\.min\.js$/
+        })]
+    },
+    plugins: [
+    ],
+    entry: {
+        'ractive-droplist': path.resolve(__dirname, './src/ractive-droplist.ractive.html'),
+        'ractive-droplist.min': path.resolve(__dirname, './src/ractive-droplist.ractive.html')
+    },
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: '[name].js',
+        library: 'RactiveDroplist',
+        libraryTarget: 'umd',
+        libraryExport: 'default'
+    },
+    externals: {
+    	ractive: {
+    		commonjs: 'ractive',
+    		commonjs2: 'ractive',
+    		amd: 'ractive',
+    		root: 'Ractive'
+    	},
+		'popper.js': {
+            commonjs: 'popper.js',
+            commonjs2: 'popper.js',
+            amd: 'popper.js',
+            root: 'Popper'
+        }    	
+    },
+    module: {
+        rules: [
+            {
+                test: /\.ractive\.html$/,
+                exclude: /(node_modules|bower_components)/,
+                use: [
+                    {
+                        loader: 'ractive-bin-loader'
+                    }                    
+                ]
+            }
+        ]
+    }
+}

@@ -14,16 +14,23 @@
     "dropdown"
   ],
   "devDependencies": {
-    "ractive": "*",
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "babel-loader": "^8.0.4",
+    "ractive": "^1.1.1",
     "ractive-bin-loader": "^1.0.1",
-    "webpack": "^3.3.0",
-    "onchange": "*"
+    "uglifyjs-webpack-plugin": "^2.0.1",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2",
+    "ractive-decorators-popper": "^1.0.0",
+    "scroll-into-view-if-needed": "^2.2.20"
   },
+  "dependencies": {},
   "scripts": {
-    "build": "webpack",
-    "dev": "onchange 'src/*.*' -- npm run build"
+    "build": "webpack --config webpack.config.js",
+    "watch": "webpack --config webpack.config.js --watch"
   },
   "author": "kouts",
-  "license": "ISC",
-  "dependencies": {}
+  "license": "MIT"
 }
