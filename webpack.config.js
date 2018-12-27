@@ -38,7 +38,13 @@ module.exports = {
             commonjs2: 'popper.js',
             amd: 'popper.js',
             root: 'Popper'
-        }    	
+        },
+        'ractive-decorators-popper': {
+            commonjs: 'ractive-decorators-popper',
+            commonjs2: 'ractive-decorators-popper',
+            amd: 'ractive-decorators-popper',
+            root: 'RactiveDecoratorsPopper'
+        }
     },
     module: {
         rules: [

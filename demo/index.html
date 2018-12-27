@@ -73,7 +73,7 @@
             <div class="col-sm-6">
                 <h2 class="pb-2">Quick demo</h2>
                 <droplist list="{{trade_codes}}" value="{{selected_value}}" show_list_on_open="false" on-change="droplist_changed">
-                    <span title="{{text}}">{{{text ? text_highlighted : '&nbsp;'}}}</span>
+                    <span title="{{text}}">{{@index+1}}) {{{text_highlighted}}}</span>
                 </droplist>
             </div>
         </div>
@@ -84,51 +84,51 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
     <script src="https://unpkg.com/popper.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+    <script src="https://gitcdn.xyz/repo/kouts/ractive-decorators-popper/master/dist/ractive-decorators-popper.js"></script>
     <script src="../dist/ractive-droplist.js"></script>
 
     <script type="text/javascript">
 
-      function findComments(el) {
-        var arr = [];
-        for(var i = 0; i < el.childNodes.length; i++) {
-          var node = el.childNodes[i];
-          if(node.nodeType === 8) {
-            arr.push(node);
-          } else {
-            arr.push.apply(arr, findComments(node));
-          }
-        }
-        return arr;
-      };
-
-      function esc(string){
-        var entityMap = {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': '&quot;', "'": '&#39;', "/": '&#x2F;'};
-        return String(string).replace(/[&<>"'\/]/g, function(s){
-          return entityMap[s];
-        });
-      }
-
-      Ractive.decorators.code = function(node){
-        var comments = findComments(node);
-        for (var i = 0; i < comments.length; i++) {
-          var temp = document.createElement('div');
-          temp.classList.add('code-comment');
-          temp.innerHTML = esc(comments[i].nodeValue).replace(/^\s+|\s+$/g, '');
-          node.replaceChild(temp, comments[i]);
+        function findComments(el) {
+            var arr = [];
+            for(var i = 0; i < el.childNodes.length; i++) {
+                var node = el.childNodes[i];
+                if(node.nodeType === 8) {
+                    arr.push(node);
+                } else {
+                    arr.push.apply(arr, findComments(node));
+                }
+            }
+            return arr;
         };
-        return {
-          teardown: function(){
-          }
-        }        
-      }
 
-      var ractive = new Ractive({
-        stripComments: false,
-        target: '#app',
-        template: '#app-template',
-        data: {
-            selected_value: '',
-            trade_codes: [
+        Ractive.decorators.code = function(node){
+            var comments = findComments(node);
+            for (var i = 0; i < comments.length; i++) {
+                node.appendChild(document.createTextNode(comments[i].nodeValue));
+            };
+            Prism.highlightElement(node);
+            return {
+                teardown: function(){
+                }
+            }        
+        }
+
+        Ractive.decorators.prism = function(node){
+            Prism.highlightElement(node);
+            return {
+                teardown: function(){
+                }
+            }        
+        }
+
+        var ractive = new Ractive({
+            stripComments: false,
+            target: '#app',
+            template: '#app-template',
+            data: {
+                selected_value: '',
+                trade_codes: [
                 {
                     "value": "",
                     "text": ""
@@ -1357,14 +1357,14 @@
                     "value": "554020",
                     "text": "Discotheques and nightclubs"
                 }
-            ]
-        },
-        components: {
-          droplist: RactiveDroplist
-        },
-        on: {
-        }
-      });
+                ]
+            },
+            components: {
+                droplist: RactiveDroplist
+            },
+            on: {
+            }
+        });
     </script>
 
   </body>
