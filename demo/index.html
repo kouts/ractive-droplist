@@ -38,26 +38,26 @@
 </style>
 </head>
 
-  <body>
+<body>
 
-  	<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  		<a class="navbar-brand" href="javascript:;">ractive-droplist</a>
-  		<div class="collapse navbar-collapse">
-  			<ul class="navbar-nav mr-auto">
-  			<!--
-                <li class="nav-item active">
-  					<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-  				</li>
-             -->
-  			</ul>
-  			<form class="form-inline">
-          <a class="nav-link" style="color:#fff;" href="https://github.com/kouts/ractive-droplist" target="_blank" rel="noopener" aria-label="ractive-droplist GitHub">
-            <svg class="navbar-nav-svg" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 499.36" focusable="false"><title>ractive-droplist at GitHub</title><path d="M256 0C114.64 0 0 114.61 0 256c0 113.09 73.34 209 175.08 242.9 12.8 2.35 17.47-5.56 17.47-12.34 0-6.08-.22-22.18-.35-43.54-71.2 15.49-86.2-34.34-86.2-34.34-11.64-29.57-28.42-37.45-28.42-37.45-23.27-15.84 1.73-15.55 1.73-15.55 25.69 1.81 39.21 26.38 39.21 26.38 22.84 39.12 59.92 27.82 74.5 21.27 2.33-16.54 8.94-27.82 16.25-34.22-56.84-6.43-116.6-28.43-116.6-126.49 0-27.95 10-50.8 26.35-68.69-2.63-6.48-11.42-32.5 2.51-67.75 0 0 21.49-6.88 70.4 26.24a242.65 242.65 0 0 1 128.18 0c48.87-33.13 70.33-26.24 70.33-26.24 14 35.25 5.18 61.27 2.55 67.75 16.41 17.9 26.31 40.75 26.31 68.69 0 98.35-59.85 120-116.88 126.32 9.19 7.9 17.38 23.53 17.38 47.41 0 34.22-.31 61.83-.31 70.23 0 6.85 4.61 14.81 17.6 12.31C438.72 464.97 512 369.08 512 256.02 512 114.62 397.37 0 256 0z" fill="currentColor" fill-rule="evenodd"/></svg>
-          </a>
-  				<a href="https://github.com/kouts/ractive-droplist/archive/master.zip" class="btn btn-outline-success">Download</a>
-  			</form>
-  		</div>
-  	</nav>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="javascript:;">ractive-droplist</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <!--
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                -->
+            </ul>
+            <form class="form-inline">
+                <a class="nav-link" style="color:#fff;" href="https://github.com/kouts/ractive-droplist" target="_blank" rel="noopener" aria-label="ractive-droplist GitHub">
+                    <svg class="navbar-nav-svg" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 499.36" focusable="false"><title>ractive-droplist at GitHub</title><path d="M256 0C114.64 0 0 114.61 0 256c0 113.09 73.34 209 175.08 242.9 12.8 2.35 17.47-5.56 17.47-12.34 0-6.08-.22-22.18-.35-43.54-71.2 15.49-86.2-34.34-86.2-34.34-11.64-29.57-28.42-37.45-28.42-37.45-23.27-15.84 1.73-15.55 1.73-15.55 25.69 1.81 39.21 26.38 39.21 26.38 22.84 39.12 59.92 27.82 74.5 21.27 2.33-16.54 8.94-27.82 16.25-34.22-56.84-6.43-116.6-28.43-116.6-126.49 0-27.95 10-50.8 26.35-68.69-2.63-6.48-11.42-32.5 2.51-67.75 0 0 21.49-6.88 70.4 26.24a242.65 242.65 0 0 1 128.18 0c48.87-33.13 70.33-26.24 70.33-26.24 14 35.25 5.18 61.27 2.55 67.75 16.41 17.9 26.31 40.75 26.31 68.69 0 98.35-59.85 120-116.88 126.32 9.19 7.9 17.38 23.53 17.38 47.41 0 34.22-.31 61.83-.31 70.23 0 6.85 4.61 14.81 17.6 12.31C438.72 464.97 512 369.08 512 256.02 512 114.62 397.37 0 256 0z" fill="currentColor" fill-rule="evenodd"/></svg>
+                </a>
+                <a href="https://github.com/kouts/ractive-droplist/archive/master.zip" class="btn btn-outline-success">Download</a>
+            </form>
+        </div>
+    </nav>
 
   	<div class="container" id="app"></div>
 
@@ -72,8 +72,8 @@
         <div class="row mb-3">
             <div class="col-sm-6">
                 <h2 class="pb-2">Quick demo</h2>
-                <droplist list="{{trade_codes}}" value="{{selected_value}}" show_list_on_open="false" on-change="droplist_changed">
-                    <span title="{{text}}">{{@index+1}}) {{{text_highlighted}}}</span>
+                <droplist list="{{countries}}" value="{{selected_value}}" show_list_on_open="true" on-change="droplist_changed">
+                    <span title="{{text}}">{{{text_highlighted}}}</span>
                 </droplist>
             </div>
         </div>
@@ -127,1236 +127,1253 @@
             target: '#app',
             template: '#app-template',
             data: {
-                selected_value: '',
-                trade_codes: [
-                {
-                    "value": "",
-                    "text": ""
-                },
-                {
-                    "value": "522500",
-                    "text": "Retail sale of alcoholic and other beverages"
-                },
-                {
-                    "value": "513420",
-                    "text": "Wholesale of wine and spirits"
-                },
-                {
-                    "value": "525020",
-                    "text": "Antique shops"
-                },
-                {
-                    "value": "523100",
-                    "text": "Dispensing chemists"
-                },
-                {
-                    "value": "925130",
-                    "text": "Archives"
-                },
-                {
-                    "value": "851220",
-                    "text": "General medical specialists and out-patients' clinics"
-                },
-                {
-                    "value": "524866",
-                    "text": "Retail sale of computers and standard software"
-                },
-                {
-                    "value": "300200",
-                    "text": "Manufacture of computers and other information processing equipment"
-                },
-                {
-                    "value": "268210",
-                    "text": "Manufacture of asphalt and roofing felt"
-                },
-                {
-                    "value": "505010",
-                    "text": "Service stations without kiosk"
-                },
-                {
-                    "value": "505020",
-                    "text": "Service stations with kiosk"
-                },
-                {
-                    "value": "266600",
-                    "text": "Manufacture of other articles of concrete"
-                },
-                {
-                    "value": "266300",
-                    "text": "Manufacture of ready-mixed concrete"
-                },
-                {
-                    "value": "925300",
-                    "text": "Botanical and zoological gardens and nature reserves activities"
-                },
-                {
-                    "value": "633010",
-                    "text": "Tourist agency activities"
-                },
-                {
-                    "value": "524701",
-                    "text": "Retail sale of books"
-                },
-                {
-                    "value": "514745",
-                    "text": "Wholesale of books and stationary"
-                },
-                {
-                    "value": "524867",
-                    "text": "Retail sale of office machinery"
-                },
-                {
-                    "value": "362220",
-                    "text": "Workshops engaged in manufacture of gold and silver articles and jewellers"
-                },
-                {
-                    "value": "524810",
-                    "text": "Retail sale of watches"
-                },
-                {
-                    "value": "524620",
-                    "text": "Retail sale of building materials"
-                },
-                {
-                    "value": "515310",
-                    "text": "Wholesale of wood and construction material"
-                },
-                {
-                    "value": "401100",
-                    "text": "Production of electricity"
-                },
-                {
-                    "value": "312010",
-                    "text": "Manufacture of electric distribution and control boards"
-                },
-                {
-                    "value": "312090",
-                    "text": "Manufacture of electric switches"
-                },
-                {
-                    "value": "524510",
-                    "text": "Retail sale of electric household appliances"
-                },
-                {
-                    "value": "514310",
-                    "text": "Wholesale of white goods"
-                },
-                {
-                    "value": "527210",
-                    "text": "Repair of electrical household goods"
-                },
-                {
-                    "value": "514312",
-                    "text": "Warehouse for electrical equipment and electronic devices"
-                },
-                {
-                    "value": "316290",
-                    "text": "Manufacture of other electrical and electronic equipment n.e.c."
-                },
-                {
-                    "value": "551011",
-                    "text": "Living rooms"
-                },
-                {
-                    "value": "524895",
-                    "text": "Sex shops"
-                },
-                {
-                    "value": "514610",
-                    "text": "Wholesale of pharmaceutical goods and nursing requisites"
-                },
-                {
-                    "value": "244200",
-                    "text": "Manufacture of pharmaceutical preparations "
-                },
-                {
-                    "value": "524825",
-                    "text": "Retail sale of photographic equipment"
-                },
-                {
-                    "value": "342000",
-                    "text": "Manufacture of bodies(coachwork) for motor vehicles; manufacture of trailers and semi-trailers"
-                },
-                {
-                    "value": "851100",
-                    "text": "Hospital activities"
-                },
-                {
-                    "value": "851320",
-                    "text": "Dental clinical technicians"
-                },
-                {
-                    "value": "853140",
-                    "text": "Residential institutions for physically or mentally handicapped adults"
-                },
-                {
-                    "value": "551010",
-                    "text": "Hotels"
-                },
-                {
-                    "value": "526002",
-                    "text": "Hunting and fishing equipment store"
-                },
-                {
-                    "value": "156110",
-                    "text": "Manufacture of grain mill products"
-                },
-                {
-                    "value": "513903",
-                    "text": "Flour storage"
-                },
-                {
-                    "value": "527100",
-                    "text": "Repair of boots"
-                },
-                {
-                    "value": "524310",
-                    "text": "Retail sale of footwear"
-                },
-                {
-                    "value": "514220",
-                    "text": "Wholesale of footwear"
-                },
-                {
-                    "value": "193010",
-                    "text": "Manufacture of footwear except of wooden shoes"
-                },
-                {
-                    "value": "524860",
-                    "text": "Retail sale of bicycles and mopeds"
-                },
-                {
-                    "value": "930210",
-                    "text": "Hairdressing saloons"
-                },
-                {
-                    "value": "926210",
-                    "text": "Sports clubs"
-                },
-                {
-                    "value": "157110",
-                    "text": "Manufacture of prepared feeds for agriculture and fur farming"
-                },
-                {
-                    "value": "155200",
-                    "text": "Manufacture of icecream"
-                },
-                {
-                    "value": "313000",
-                    "text": "Manufacture of insulated wire and cable"
-                },
-                {
-                    "value": "514311",
-                    "text": "Cable storage"
-                },
-                {
-                    "value": "152010",
-                    "text": "Production"
-                },
-                {
-                    "value": "50200",
-                    "text": "Operation of fish hatcheries and fish farms"
-                },
-                {
-                    "value": "159100",
-                    "text": "Manufacture of distilled potable alcoholic beverages"
-                },
-                {
-                    "value": "513410",
-                    "text": "Wholesale of beer and soft drinks"
-                },
-                {
-                    "value": "159800",
-                    "text": "Production of mineral waters and soft drinks"
-                },
-                {
-                    "value": "153100",
-                    "text": "Processing and preserving of potatoes"
-                },
-                {
-                    "value": "927100",
-                    "text": "Gambling and betting"
-                },
-                {
-                    "value": "525090",
-                    "text": "Other retail sale of second-hand goods"
-                },
-                {
-                    "value": "752402",
-                    "text": "Building not in use"
-                },
-                {
-                    "value": "403000",
-                    "text": "Steam and hot water supply"
-                },
-                {
-                    "value": "521130",
-                    "text": "Supermarkets"
-                },
-                {
-                    "value": "923400",
-                    "text": "Other entertainment activities n.e.c."
-                },
-                {
-                    "value": "527300",
-                    "text": "Repair of watches and clocks"
-                },
-                {
-                    "value": "335000",
-                    "text": "Manufacture of watches and clocks"
-                },
-                {
-                    "value": "515500",
-                    "text": "Wholesale of chemical products"
-                },
-                {
-                    "value": "263000",
-                    "text": "Manufacture of ceramic tiles and flags"
-                },
-                {
-                    "value": "262200",
-                    "text": "Manufacture of ceramic sanitary fixtures "
-                },
-                {
-                    "value": "515100",
-                    "text": "Wholesale of solid"
-                },
-                {
-                    "value": "171000",
-                    "text": "Preparation and spinning of textile fibres"
-                },
-                {
-                    "value": "252110",
-                    "text": "Manufacture of plates"
-                },
-                {
-                    "value": "266601",
-                    "text": "Crushed stone production facility"
-                },
-                {
-                    "value": "921300",
-                    "text": "Motion picture projection"
-                },
-                {
-                    "value": "913100",
-                    "text": "Activities of religious institutions and organisations"
-                },
-                {
-                    "value": "205120",
-                    "text": "Manufacture of coffins"
-                },
-                {
-                    "value": "515319",
-                    "text": "Stone and concrete products warehouse"
-                },
-                {
-                    "value": "268220",
-                    "text": "Manufacture of rockwool"
-                },
-                {
-                    "value": "515316",
-                    "text": "Glass storage"
-                },
-                {
-                    "value": "261100",
-                    "text": "Manufacture of flat glass"
-                },
-                {
-                    "value": "454420",
-                    "text": "Glazing"
-                },
-                {
-                    "value": "261300",
-                    "text": "Manufacture of hollow glass"
-                },
-                {
-                    "value": "524899",
-                    "text": "Retail sale of other goods"
-                },
-                {
-                    "value": "514790",
-                    "text": "Wholesale of other household goods"
-                },
-                {
-                    "value": "262100",
-                    "text": "Manufacture of ceramic household and ornamental articles"
-                },
-                {
-                    "value": "526000",
-                    "text": "Household chemicals store"
-                },
-                {
-                    "value": "12400",
-                    "text": "Farming of poultry"
-                },
-                {
-                    "value": "12110",
-                    "text": "Farming of dairy cattle"
-                },
-                {
-                    "value": "513700",
-                    "text": "Wholesale of coffee"
-                },
-                {
-                    "value": "553020",
-                    "text": "Cafeterias"
-                },
-                {
-                    "value": "151311",
-                    "text": "Tinned food industry"
-                },
-                {
-                    "value": "801010",
-                    "text": "Primary education"
-                },
-                {
-                    "value": "205200",
-                    "text": "Manufacture of articles of cork"
-                },
-                {
-                    "value": "551012",
-                    "text": "Apartment building (Part of the building)"
-                },
-                {
-                    "value": "365001",
-                    "text": "Cosmetics industry"
-                },
-                {
-                    "value": "752401",
-                    "text": "Crematorium"
-                },
-                {
-                    "value": "251200",
-                    "text": "Retreading and rebuilding of rubber tyres"
-                },
-                {
-                    "value": "514313",
-                    "text": "Warehouse for rubber products"
-                },
-                {
-                    "value": "251300",
-                    "text": "Manufacture of other rubber products "
-                },
-                {
-                    "value": "524835",
-                    "text": "Art shops"
-                },
-                {
-                    "value": "323020",
-                    "text": "Manufacture of loudspeakers"
-                },
-                {
-                    "value": "552200",
-                    "text": "Camping sites"
-                },
-                {
-                    "value": "524440",
-                    "text": "Retail sale of kitchen utensils"
-                },
-                {
-                    "value": "514410",
-                    "text": "Wholesale of china and glassware"
-                },
-                {
-                    "value": "515311",
-                    "text": "Cold storage facility at temperatures below zero"
-                },
-                {
-                    "value": "515312",
-                    "text": "Fuel terminal"
-                },
-                {
-                    "value": "366310",
-                    "text": "Manufacture of candles"
-                },
-                {
-                    "value": "351100",
-                    "text": "Building and repairing of ships"
-                },
-                {
-                    "value": "853215",
-                    "text": "Kindergartens"
-                },
-                {
-                    "value": "524240",
-                    "text": "Retail sale of baby articles and children's clothing"
-                },
-                {
-                    "value": "524885",
-                    "text": "Retail sale of pet animals"
-                },
-                {
-                    "value": "151310",
-                    "text": "Production of prepared meat dishes"
-                },
-                {
-                    "value": "246200",
-                    "text": "Manufacture of glues and gelatine"
-                },
-                {
-                    "value": "524875",
-                    "text": "Florist's shops"
-                },
-                {
-                    "value": "159700",
-                    "text": "Manufacture of malt"
-                },
-                {
-                    "value": "151200",
-                    "text": "Production"
-                },
-                {
-                    "value": "852000",
-                    "text": "Veterinary activities"
-                },
-                {
-                    "value": "286310",
-                    "text": "Manufacture of locks"
-                },
-                {
-                    "value": "366200",
-                    "text": "Manufacture of brooms and brushes"
-                },
-                {
-                    "value": "246100",
-                    "text": "Manufacture of explosives"
-                },
-                {
-                    "value": "515315",
-                    "text": "Explosives warehouse"
-                },
-                {
-                    "value": "515317",
-                    "text": "Mattress warehouse"
-                },
-                {
-                    "value": "361500",
-                    "text": "Manufacture of mattresses"
-                },
-                {
-                    "value": "153200",
-                    "text": "Manufacture of fruit and vegetable juice"
-                },
-                {
-                    "value": "158700",
-                    "text": "Manufacture of condiments an seasonings"
-                },
-                {
-                    "value": "158500",
-                    "text": "Manufacture of macaroni"
-                },
-                {
-                    "value": "211201",
-                    "text": "Waste and old paper processing"
-                },
-                {
-                    "value": "930400",
-                    "text": "Physical well-being activities"
-                },
-                {
-                    "value": "523200",
-                    "text": "Retail sale of medical and orthopaedic goods"
-                },
-                {
-                    "value": "515200",
-                    "text": "Wholesale of metals and metal ores"
-                },
-                {
-                    "value": "271000",
-                    "text": "Manufacture of basic iron and steel and of ferro alloys"
-                },
-                {
-                    "value": "371000",
-                    "text": "Recycling of metal waste and scrap"
-                },
-                {
-                    "value": "287510",
-                    "text": "Manufacture metal sign plates"
-                },
-                {
-                    "value": "281200",
-                    "text": "Manufacture of builders carpentry and joinery of metal"
-                },
-                {
-                    "value": "285100",
-                    "text": "Treatment and coating of metals"
-                },
-                {
-                    "value": "275100",
-                    "text": "Casting of iron"
-                },
-                {
-                    "value": "281100",
-                    "text": "Manufacture of metal structures and parts of structures"
-                },
-                {
-                    "value": "268290",
-                    "text": "Manufacture of other non-metallic mineral products except asphalt"
-                },
-                {
-                    "value": "515321",
-                    "text": "Warehouse for non-combustible liquids"
-                },
-                {
-                    "value": "524870",
-                    "text": "Retail sale of telecommunications equipment"
-                },
-                {
-                    "value": "504000",
-                    "text": "Wholesale and retail sale"
-                },
-                {
-                    "value": "502010",
-                    "text": "General repair shops"
-                },
-                {
-                    "value": "502050",
-                    "text": "Motor vehicle painters"
-                },
-                {
-                    "value": "501020",
-                    "text": "Retail sale of motorvehicles"
-                },
-                {
-                    "value": "501010",
-                    "text": "Wholesale of motorvehicles"
-                },
-                {
-                    "value": "501030",
-                    "text": "Car wash"
-                },
-                {
-                    "value": "502090",
-                    "text": "Other motor vehicle services"
-                },
-                {
-                    "value": "341000",
-                    "text": "Manufacture of motor vehicles"
-                },
-                {
-                    "value": "503020",
-                    "text": "Retail sale of motor vehicle parts and accessories"
-                },
-                {
-                    "value": "503010",
-                    "text": "Wholesale of motor vehicle parts and accessories"
-                },
-                {
-                    "value": "552100",
-                    "text": "Youth hostels"
-                },
-                {
-                    "value": "201012",
-                    "text": "Other timber processing"
-                },
-                {
-                    "value": "900220",
-                    "text": "Treatment of other waste"
-                },
-                {
-                    "value": "925200",
-                    "text": "Museum activities and preservation of historical sites and buildings"
-                },
-                {
-                    "value": "524530",
-                    "text": "Retail sale of records"
-                },
-                {
-                    "value": "524540",
-                    "text": "Retail sale of musical instruments"
-                },
-                {
-                    "value": "363000",
-                    "text": "Manufacture of musical instruments"
-                },
-                {
-                    "value": "332090",
-                    "text": "Manufacture of other measuring and checking equipment"
-                },
-                {
-                    "value": "524850",
-                    "text": "Retail sale of toys and games"
-                },
-                {
-                    "value": "514740",
-                    "text": "Wholesale of of toys and games"
-                },
-                {
-                    "value": "365000",
-                    "text": "Manufacture of games and toys"
-                },
-                {
-                    "value": "514705",
-                    "text": "Wholesale of furniture"
-                },
-                {
-                    "value": "524410",
-                    "text": "Retail sale of furniture"
-                },
-                {
-                    "value": "191000",
-                    "text": "Dressing and tanning of leather"
-                },
-                {
-                    "value": "181000",
-                    "text": "Manufacture of leather clothes"
-                },
-                {
-                    "value": "524320",
-                    "text": "Retail sale of leather goods"
-                },
-                {
-                    "value": "514750",
-                    "text": "Wholesale of suitcases"
-                },
-                {
-                    "value": "748740",
-                    "text": "Activities of fair"
-                },
-                {
-                    "value": "515314",
-                    "text": "Warehouse for paper and cardboard products"
-                },
-                {
-                    "value": "211200",
-                    "text": "Manufacture of paper and paperboard"
-                },
-                {
-                    "value": "212300",
-                    "text": "Manufacture of paper stationary"
-                },
-                {
-                    "value": "158110",
-                    "text": "Manufacture of bread and other bakery products"
-                },
-                {
-                    "value": "522410",
-                    "text": "Retail sale of bread"
-                },
-                {
-                    "value": "513600",
-                    "text": "Wholesale of bread"
-                },
-                {
-                    "value": "651100",
-                    "text": "Central banking"
-                },
-                {
-                    "value": "523310",
-                    "text": "Perfumery shops"
-                },
-                {
-                    "value": "514500",
-                    "text": "Wholesale of perfume and cosmetics"
-                },
-                {
-                    "value": "245200",
-                    "text": "Manufacture of perfumes"
-                },
-                {
-                    "value": "632120",
-                    "text": "Operation of parking lots or garages"
-                },
-                {
-                    "value": "314000",
-                    "text": "Manufacture of accumulators"
-                },
-                {
-                    "value": "514709",
-                    "text": "Soft furniture warehouse"
-                },
-                {
-                    "value": "205191",
-                    "text": "Manufacture of other products of wood n.e.c."
-                },
-                {
-                    "value": "526001",
-                    "text": "Linen and haberdashery store"
-                },
-                {
-                    "value": "930110",
-                    "text": "Laundering for industrial or commercial clients"
-                },
-                {
-                    "value": "155110",
-                    "text": "Operation of dairies and cheese making"
-                },
-                {
-                    "value": "252410",
-                    "text": "Manufacture of office and school supplies of plastic "
-                },
-                {
-                    "value": "252420",
-                    "text": "Manufacture of tableware and kitchenware of plastic"
-                },
-                {
-                    "value": "252390",
-                    "text": "Manufacture of other builders' ware of plastic"
-                },
-                {
-                    "value": "252130",
-                    "text": "Manufacture of bars and profiles of plastics"
-                },
-                {
-                    "value": "252200",
-                    "text": "Manufacture of plastic packaging goods"
-                },
-                {
-                    "value": "514314",
-                    "text": "Warehouse for plastic products and materials"
-                },
-                {
-                    "value": "252120",
-                    "text": "Manufacture of pipes"
-                },
-                {
-                    "value": "514420",
-                    "text": "Wholesale of cleaning materials"
-                },
-                {
-                    "value": "245120",
-                    "text": "Manufacture of polishing and cleaning preparations"
-                },
-                {
-                    "value": "752400",
-                    "text": "Police"
-                },
-                {
-                    "value": "515318",
-                    "text": "Warehouse for foam"
-                },
-                {
-                    "value": "361501",
-                    "text": "Production of foam"
-                },
-                {
-                    "value": "641100",
-                    "text": "National post activities"
-                },
-                {
-                    "value": "524820",
-                    "text": "Retail sale of glasses"
-                },
-                {
-                    "value": "201020",
-                    "text": "Impregnation of wood"
-                },
-                {
-                    "value": "514706",
-                    "text": "Timber and timber products warehouse (except for woodchip and fibreboard products)"
-                },
-                {
-                    "value": "201011",
-                    "text": "Timber dryer"
-                },
-                {
-                    "value": "203030",
-                    "text": "Manufacture of prefabricated buildings or elements thereof"
-                },
-                {
-                    "value": "514708",
-                    "text": "Warehouse for woodchip and fibreboard products"
-                },
-                {
-                    "value": "202001",
-                    "text": "Manufacture of veneer sheets; manufactures of plywood"
-                },
-                {
-                    "value": "205190",
-                    "text": "Manufacture of other products of wood n.e.c."
-                },
-                {
-                    "value": "410001",
-                    "text": "Pumping station"
-                },
-                {
-                    "value": "174010",
-                    "text": "Manufacture of sails"
-                },
-                {
-                    "value": "513100",
-                    "text": "Wholesale of fruit and vegetables"
-                },
-                {
-                    "value": "153300",
-                    "text": "Processing and preserving of fruit and vegetables"
-                },
-                {
-                    "value": "203020",
-                    "text": "Manufacture of wooden goods to be used for buildings"
-                },
-                {
-                    "value": "518800",
-                    "text": "Wholesale of agricultural machinery and accessories and implements"
-                },
-                {
-                    "value": "293230",
-                    "text": "Manufacture of agricultural and forestry machinery n.e.c."
-                },
-                {
-                    "value": "158920",
-                    "text": "Manufacture of other products n.e.c."
-                },
-                {
-                    "value": "922020",
-                    "text": "Radio activities"
-                },
-                {
-                    "value": "925110",
-                    "text": "Public libraries"
-                },
-                {
-                    "value": "524700",
-                    "text": "Retail sale of books"
-                },
-                {
-                    "value": "553090",
-                    "text": "Community centres"
-                },
-                {
-                    "value": "524610",
-                    "text": "Retail sale of hardware"
-                },
-                {
-                    "value": "515400",
-                    "text": "Wholesale of hardware"
-                },
-                {
-                    "value": "251100",
-                    "text": "Manufacture of rubber tyres and tubes"
-                },
-                {
-                    "value": "502060",
-                    "text": "Tyre and tube repair"
-                },
-                {
-                    "value": "632300",
-                    "text": "Airports etc."
-                },
-                {
-                    "value": "553010",
-                    "text": "Restaurants"
-                },
-                {
-                    "value": "524230",
-                    "text": "Retail sale of men's and ladies' clothing"
-                },
-                {
-                    "value": "514210",
-                    "text": "Wholesale of clothing"
-                },
-                {
-                    "value": "182200",
-                    "text": "Manufacture of outerwear"
-                },
-                {
-                    "value": "201010",
-                    "text": "Sawmilling and planning of wood"
-                },
-                {
-                    "value": "853245",
-                    "text": "Rehabilitation institutions"
-                },
-                {
-                    "value": "930401",
-                    "text": "Physical well-being activities"
-                },
-                {
-                    "value": "245110",
-                    "text": "Manufacture of soap and detergents"
-                },
-                {
-                    "value": "177100",
-                    "text": "Manufacture of knitted and crocheted hosiery"
-                },
-                {
-                    "value": "513901",
-                    "text": "Salt storage"
-                },
-                {
-                    "value": "514707",
-                    "text": "Veneer and plywood warehouse"
-                },
-                {
-                    "value": "202000",
-                    "text": "Manufacture of veneer sheets; manufactures of plywood"
-                },
-                {
-                    "value": "514735",
-                    "text": "Wholesale of sports goods"
-                },
-                {
-                    "value": "926110",
-                    "text": "Sports centres and public swimming baths"
-                },
-                {
-                    "value": "524845",
-                    "text": "Retail sale of sports goods"
-                },
-                {
-                    "value": "364000",
-                    "text": "Manufacture of sports goods"
-                },
-                {
-                    "value": "513902",
-                    "text": "Sugar storage"
-                },
-                {
-                    "value": "524830",
-                    "text": "Gift shops"
-                },
-                {
-                    "value": "522420",
-                    "text": "Retail sale of chocolate and sugar confectionery"
-                },
-                {
-                    "value": "158400",
-                    "text": "Manufacture of cocao; chocolate and sugar confectionery"
-                },
-                {
-                    "value": "513300",
-                    "text": "Wholesale of daity produce"
-                },
-                {
-                    "value": "154200",
-                    "text": "Manufacture of refined oils and fats"
-                },
-                {
-                    "value": "923110",
-                    "text": "Live theatrical presentations"
-                },
-                {
-                    "value": "158600",
-                    "text": "Processing of tea and coffee"
-                },
-                {
-                    "value": "524100",
-                    "text": "Retail sale of textiles"
-                },
-                {
-                    "value": "514100",
-                    "text": "Wholesale of textiles"
-                },
-                {
-                    "value": "174020",
-                    "text": "Manufacture of made-up furnishing articles"
-                },
-                {
-                    "value": "173000",
-                    "text": "Finishing of textiles"
-                },
-                {
-                    "value": "372000",
-                    "text": "Recycling of non-metal waste and scrap"
-                },
-                {
-                    "value": "922010",
-                    "text": "Television activities"
-                },
-                {
-                    "value": "264000",
-                    "text": "Manufacture of bricks"
-                },
-                {
-                    "value": "512100",
-                    "text": "Wholesale of grain"
-                },
-                {
-                    "value": "521110",
-                    "text": "Grocer's shops"
-                },
-                {
-                    "value": "521210",
-                    "text": "Varity stores"
-                },
-                {
-                    "value": "513890",
-                    "text": "Other specialized wholesale of food"
-                },
-                {
-                    "value": "513900",
-                    "text": "Non-specialized wholesale of food"
-                },
-                {
-                    "value": "154300",
-                    "text": "Manufacture of margarine and similar edible fats"
-                },
-                {
-                    "value": "361110",
-                    "text": "Manufacture of chairs and seats except of upholstery"
-                },
-                {
-                    "value": "512400",
-                    "text": "Wholesale of hides"
-                },
-                {
-                    "value": "287300",
-                    "text": "Manufacture of wire products"
-                },
-                {
-                    "value": "401200",
-                    "text": "Transmission of electricity"
-                },
-                {
-                    "value": "222100",
-                    "text": "Printing of newspapers"
-                },
-                {
-                    "value": "222300",
-                    "text": "Bookbinding and finishing"
-                },
-                {
-                    "value": "211100",
-                    "text": "Manufacture of pulp"
-                },
-                {
-                    "value": "265100",
-                    "text": "Manufacture of cement"
-                },
-                {
-                    "value": "522600",
-                    "text": "Retail sale of tobacco products"
-                },
-                {
-                    "value": "513500",
-                    "text": "Wholesale of tobacco products"
-                },
-                {
-                    "value": "160000",
-                    "text": "Manufacture of tobacco products"
-                },
-                {
-                    "value": "752500",
-                    "text": "Fire service activities"
-                },
-                {
-                    "value": "515313",
-                    "text": "Peat and peat briquette warehouse"
-                },
-                {
-                    "value": "103000",
-                    "text": "Extraction and agglomeration of peat"
-                },
-                {
-                    "value": "552390",
-                    "text": "Other short-stay lodging"
-                },
-                {
-                    "value": "853150",
-                    "text": "Residential nursing homes and sheltered homes"
-                },
-                {
-                    "value": "156200",
-                    "text": "Manufacture of starches and starch products"
-                },
-                {
-                    "value": "286200",
-                    "text": "Manufacture of tools"
-                },
-                {
-                    "value": "518100",
-                    "text": "Wholesale of machine tools for working melat and wood"
-                },
-                {
-                    "value": "295690",
-                    "text": "Manufacture of industrial machinery n.e.c."
-                },
-                {
-                    "value": "926111",
-                    "text": "Sports centres and public swimming baths"
-                },
-                {
-                    "value": "732000",
-                    "text": "Research and experimental development on social sciences and humanities"
-                },
-                {
-                    "value": "524801",
-                    "text": "Retail sale of carpets"
-                },
-                {
-                    "value": "514710",
-                    "text": "Wholesale of carpets"
-                },
-                {
-                    "value": "175100",
-                    "text": "Manufacture of carpets and rugs"
-                },
-                {
-                    "value": "524450",
-                    "text": "Retail sale of articles for lighting"
-                },
-                {
-                    "value": "752320",
-                    "text": "Prison administration and operation"
-                },
-                {
-                    "value": "174022",
-                    "text": "Cotton wool and felt industry"
-                },
-                {
-                    "value": "410000",
-                    "text": "Collection"
-                },
-                {
-                    "value": "159400",
-                    "text": "Manufacture of cider and other fruit wines"
-                },
-                {
-                    "value": "714010",
-                    "text": "Renting of videotapes and DVDs"
-                },
-                {
-                    "value": "156111",
-                    "text": "Grain dryer"
-                },
-                {
-                    "value": "514101",
-                    "text": "Warehouse for bedspreads and pillows"
-                },
-                {
-                    "value": "174021",
-                    "text": "Production of bedspreads and pillows"
-                },
-                {
-                    "value": "527420",
-                    "text": "Locksmiths"
-                },
-                {
-                    "value": "241500",
-                    "text": "Manufacture of fertilizers etc."
-                },
-                {
-                    "value": "515501",
-                    "text": "Fertiliser warehouse"
-                },
-                {
-                    "value": "515320",
-                    "text": "Wholesale of varnish"
-                },
-                {
-                    "value": "243000",
-                    "text": "Manufacture of paints"
-                },
-                {
-                    "value": "274500",
-                    "text": "Other non-ferrous metal production"
-                },
-                {
-                    "value": "454410",
-                    "text": "Painting"
-                },
-                {
-                    "value": "159600",
-                    "text": "Manufacture of beer"
-                },
-                {
-                    "value": "524231",
-                    "text": "Sewing atelier"
-                },
-                {
-                    "value": "554020",
-                    "text": "Discotheques and nightclubs"
-                }
+                selected_value: 'CH',
+                countries: [
+                    {
+                        "value": "",
+                        "text": "",
+                        "text_s": ""
+                    },
+                    {
+                        "value": "AF",
+                        "text": "Afghanistan",
+                        "text_s": "Afghanistan"
+                    },
+                    {
+                        "value": "AL",
+                        "text": "Albania",
+                        "text_s": "Albania"
+                    },
+                    {
+                        "value": "DZ",
+                        "text": "Algeria",
+                        "text_s": "Algeria"
+                    },
+                    {
+                        "value": "UM",
+                        "text": "American Minor Outlying Islands",
+                        "text_s": "Minor Outl.Isl."
+                    },
+                    {
+                        "value": "AS",
+                        "text": "American Samoa",
+                        "text_s": "Samoa, America"
+                    },
+                    {
+                        "value": "VI",
+                        "text": "American Virgin Islands",
+                        "text_s": "Amer.Virgin Is."
+                    },
+                    {
+                        "value": "AD",
+                        "text": "Andorra",
+                        "text_s": "Andorran"
+                    },
+                    {
+                        "value": "AO",
+                        "text": "Angola",
+                        "text_s": "Angola"
+                    },
+                    {
+                        "value": "AI",
+                        "text": "Anguilla",
+                        "text_s": "Anguilla"
+                    },
+                    {
+                        "value": "AQ",
+                        "text": "Antarctica",
+                        "text_s": "Antarctica"
+                    },
+                    {
+                        "value": "AG",
+                        "text": "Antigua and Barbuda",
+                        "text_s": "Antigua/Barbuda"
+                    },
+                    {
+                        "value": "AR",
+                        "text": "Argentina",
+                        "text_s": "Argentina"
+                    },
+                    {
+                        "value": "AM",
+                        "text": "Armenia",
+                        "text_s": "Armenia"
+                    },
+                    {
+                        "value": "AW",
+                        "text": "Aruba",
+                        "text_s": "Aruba"
+                    },
+                    {
+                        "value": "AU",
+                        "text": "Australia",
+                        "text_s": "Australia"
+                    },
+                    {
+                        "value": "AT",
+                        "text": "Austria",
+                        "text_s": "Austria"
+                    },
+                    {
+                        "value": "AZ",
+                        "text": "Azerbaijan",
+                        "text_s": "Azerbaijan"
+                    },
+                    {
+                        "value": "BS",
+                        "text": "Bahamas",
+                        "text_s": "Bahamas"
+                    },
+                    {
+                        "value": "BH",
+                        "text": "Bahrain",
+                        "text_s": "Bahrain"
+                    },
+                    {
+                        "value": "BD",
+                        "text": "Bangladesh",
+                        "text_s": "Bangladesh"
+                    },
+                    {
+                        "value": "BB",
+                        "text": "Barbados",
+                        "text_s": "Barbados"
+                    },
+                    {
+                        "value": "BY",
+                        "text": "Belarus",
+                        "text_s": "Belarus"
+                    },
+                    {
+                        "value": "BE",
+                        "text": "Belgium",
+                        "text_s": "Belgium"
+                    },
+                    {
+                        "value": "BZ",
+                        "text": "Belize",
+                        "text_s": "Belize"
+                    },
+                    {
+                        "value": "BJ",
+                        "text": "Benin",
+                        "text_s": "Benin"
+                    },
+                    {
+                        "value": "BM",
+                        "text": "Bermuda",
+                        "text_s": "Bermuda"
+                    },
+                    {
+                        "value": "BT",
+                        "text": "Bhutan",
+                        "text_s": "Bhutan"
+                    },
+                    {
+                        "value": "BL",
+                        "text": "Blue",
+                        "text_s": "Blue"
+                    },
+                    {
+                        "value": "BO",
+                        "text": "Bolivia",
+                        "text_s": "Bolivia"
+                    },
+                    {
+                        "value": "BA",
+                        "text": "Bosnia and Herzegovina",
+                        "text_s": "Bosnia-Herz."
+                    },
+                    {
+                        "value": "BW",
+                        "text": "Botswana",
+                        "text_s": "Botswana"
+                    },
+                    {
+                        "value": "BV",
+                        "text": "Bouvet Islands",
+                        "text_s": "Bouvet Islands"
+                    },
+                    {
+                        "value": "BR",
+                        "text": "Brazil",
+                        "text_s": "Brazil"
+                    },
+                    {
+                        "value": "IO",
+                        "text": "British Indian Ocean Territory",
+                        "text_s": "Brit.Ind.Oc.Ter"
+                    },
+                    {
+                        "value": "VG",
+                        "text": "British Virgin Islands",
+                        "text_s": "Brit.Virgin Is."
+                    },
+                    {
+                        "value": "BN",
+                        "text": "Brunei Darussalam",
+                        "text_s": "Brunei Daruss."
+                    },
+                    {
+                        "value": "BG",
+                        "text": "Bulgaria",
+                        "text_s": "Bulgaria"
+                    },
+                    {
+                        "value": "BF",
+                        "text": "Burkina Faso",
+                        "text_s": "Burkina Faso"
+                    },
+                    {
+                        "value": "MM",
+                        "text": "Burma",
+                        "text_s": "Burma"
+                    },
+                    {
+                        "value": "BI",
+                        "text": "Burundi",
+                        "text_s": "Burundi"
+                    },
+                    {
+                        "value": "KH",
+                        "text": "Cambodia",
+                        "text_s": "Cambodia"
+                    },
+                    {
+                        "value": "CM",
+                        "text": "Cameroon",
+                        "text_s": "Cameroon"
+                    },
+                    {
+                        "value": "CA",
+                        "text": "Canada",
+                        "text_s": "Canada"
+                    },
+                    {
+                        "value": "CV",
+                        "text": "Cape Verde",
+                        "text_s": "Cape Verde"
+                    },
+                    {
+                        "value": "KY",
+                        "text": "Cayman Islands",
+                        "text_s": "Cayman Islands"
+                    },
+                    {
+                        "value": "CF",
+                        "text": "Central African Republic",
+                        "text_s": "CAR"
+                    },
+                    {
+                        "value": "TD",
+                        "text": "Chad",
+                        "text_s": "Chad"
+                    },
+                    {
+                        "value": "CL",
+                        "text": "Chile",
+                        "text_s": "Chile"
+                    },
+                    {
+                        "value": "CN",
+                        "text": "China",
+                        "text_s": "China"
+                    },
+                    {
+                        "value": "CX",
+                        "text": "Christmas Islnd",
+                        "text_s": "Christmas Islnd"
+                    },
+                    {
+                        "value": "CC",
+                        "text": "Coconut Islands",
+                        "text_s": "Coconut Islands"
+                    },
+                    {
+                        "value": "CO",
+                        "text": "Colombia",
+                        "text_s": "Colombia"
+                    },
+                    {
+                        "value": "KM",
+                        "text": "Comoros",
+                        "text_s": "Comoros"
+                    },
+                    {
+                        "value": "CK",
+                        "text": "Cook Islands",
+                        "text_s": "Cook Islands"
+                    },
+                    {
+                        "value": "CR",
+                        "text": "Costa Rica",
+                        "text_s": "Costa Rica"
+                    },
+                    {
+                        "value": "CI",
+                        "text": "Cote d'Ivoire",
+                        "text_s": "Cote d'Ivoire"
+                    },
+                    {
+                        "value": "HR",
+                        "text": "Croatia",
+                        "text_s": "Croatia"
+                    },
+                    {
+                        "value": "CU",
+                        "text": "Cuba",
+                        "text_s": "Cuba"
+                    },
+                    {
+                        "value": "CY",
+                        "text": "Cyprus",
+                        "text_s": "Cyprus"
+                    },
+                    {
+                        "value": "CZ",
+                        "text": "Czech Republic",
+                        "text_s": "Czech Republic"
+                    },
+                    {
+                        "value": "CD",
+                        "text": "Democratic Republic of the Congo",
+                        "text_s": "Dem. Rep. Congo"
+                    },
+                    {
+                        "value": "DK",
+                        "text": "Denmark",
+                        "text_s": "Denmark"
+                    },
+                    {
+                        "value": "DJ",
+                        "text": "Djibouti",
+                        "text_s": "Djibouti"
+                    },
+                    {
+                        "value": "DM",
+                        "text": "Dominica",
+                        "text_s": "Dominica"
+                    },
+                    {
+                        "value": "DO",
+                        "text": "Dominican Republic",
+                        "text_s": "Dominican Rep."
+                    },
+                    {
+                        "value": "AN",
+                        "text": "Dutch Antilles",
+                        "text_s": "Dutch Antilles"
+                    },
+                    {
+                        "value": "TP",
+                        "text": "East Timor",
+                        "text_s": "East Timor"
+                    },
+                    {
+                        "value": "TL",
+                        "text": "East Timor",
+                        "text_s": "East Timor"
+                    },
+                    {
+                        "value": "EC",
+                        "text": "Ecuador",
+                        "text_s": "Ecuador"
+                    },
+                    {
+                        "value": "EG",
+                        "text": "Egypt",
+                        "text_s": "Egypt"
+                    },
+                    {
+                        "value": "SV",
+                        "text": "El Salvador",
+                        "text_s": "El Salvador"
+                    },
+                    {
+                        "value": "GQ",
+                        "text": "Equatorial Guinea",
+                        "text_s": "Equatorial Guin"
+                    },
+                    {
+                        "value": "ER",
+                        "text": "Eritrea",
+                        "text_s": "Eritrea"
+                    },
+                    {
+                        "value": "EE",
+                        "text": "Estonia",
+                        "text_s": "Estonia"
+                    },
+                    {
+                        "value": "ET",
+                        "text": "Ethiopia",
+                        "text_s": "Ethiopia"
+                    },
+                    {
+                        "value": "EU",
+                        "text": "European Union",
+                        "text_s": "European Union"
+                    },
+                    {
+                        "value": "FK",
+                        "text": "Falkland Islands",
+                        "text_s": "Falkland Islnds"
+                    },
+                    {
+                        "value": "FO",
+                        "text": "Faroe Islands",
+                        "text_s": "Faroe Islands"
+                    },
+                    {
+                        "value": "FJ",
+                        "text": "Fiji",
+                        "text_s": "Fiji"
+                    },
+                    {
+                        "value": "FI",
+                        "text": "Finland",
+                        "text_s": "Finland"
+                    },
+                    {
+                        "value": "FR",
+                        "text": "France",
+                        "text_s": "France"
+                    },
+                    {
+                        "value": "GF",
+                        "text": "French Guyana",
+                        "text_s": "French Guayana"
+                    },
+                    {
+                        "value": "PF",
+                        "text": "French Polynesia",
+                        "text_s": "Frenc.Polynesia"
+                    },
+                    {
+                        "value": "TF",
+                        "text": "French S.Territ",
+                        "text_s": "French S.Territ"
+                    },
+                    {
+                        "value": "GA",
+                        "text": "Gabon",
+                        "text_s": "Gabon"
+                    },
+                    {
+                        "value": "GM",
+                        "text": "Gambia",
+                        "text_s": "Gambia"
+                    },
+                    {
+                        "value": "GE",
+                        "text": "Georgia",
+                        "text_s": "Georgia"
+                    },
+                    {
+                        "value": "DE",
+                        "text": "Germany",
+                        "text_s": "Germany"
+                    },
+                    {
+                        "value": "GH",
+                        "text": "Ghana",
+                        "text_s": "Ghana"
+                    },
+                    {
+                        "value": "GI",
+                        "text": "Gibraltar",
+                        "text_s": "Gibraltar"
+                    },
+                    {
+                        "value": "GR",
+                        "text": "Greece",
+                        "text_s": "Greece"
+                    },
+                    {
+                        "value": "GL",
+                        "text": "Greenland",
+                        "text_s": "Greenland"
+                    },
+                    {
+                        "value": "GD",
+                        "text": "Grenada",
+                        "text_s": "Grenada"
+                    },
+                    {
+                        "value": "GP",
+                        "text": "Guadeloupe",
+                        "text_s": "Guadeloupe"
+                    },
+                    {
+                        "value": "GU",
+                        "text": "Guam",
+                        "text_s": "Guam"
+                    },
+                    {
+                        "value": "GT",
+                        "text": "Guatemala",
+                        "text_s": "Guatemala"
+                    },
+                    {
+                        "value": "GN",
+                        "text": "Guinea",
+                        "text_s": "Guinea"
+                    },
+                    {
+                        "value": "GW",
+                        "text": "Guinea-Bissau",
+                        "text_s": "Guinea-Bissau"
+                    },
+                    {
+                        "value": "GY",
+                        "text": "Guyana",
+                        "text_s": "Guyana"
+                    },
+                    {
+                        "value": "HT",
+                        "text": "Haiti",
+                        "text_s": "Haiti"
+                    },
+                    {
+                        "value": "HM",
+                        "text": "Heard and McDonald Islands",
+                        "text_s": "Heard/McDon.Isl"
+                    },
+                    {
+                        "value": "HN",
+                        "text": "Honduras",
+                        "text_s": "Honduras"
+                    },
+                    {
+                        "value": "HK",
+                        "text": "Hong Kong",
+                        "text_s": "Hong Kong"
+                    },
+                    {
+                        "value": "HU",
+                        "text": "Hungary",
+                        "text_s": "Hungary"
+                    },
+                    {
+                        "value": "IS",
+                        "text": "Iceland",
+                        "text_s": "Iceland"
+                    },
+                    {
+                        "value": "IN",
+                        "text": "India",
+                        "text_s": "India"
+                    },
+                    {
+                        "value": "ID",
+                        "text": "Indonesia",
+                        "text_s": "Indonesia"
+                    },
+                    {
+                        "value": "IR",
+                        "text": "Iran",
+                        "text_s": "Iran"
+                    },
+                    {
+                        "value": "IQ",
+                        "text": "Iraq",
+                        "text_s": "Iraq"
+                    },
+                    {
+                        "value": "IE",
+                        "text": "Ireland",
+                        "text_s": "Ireland"
+                    },
+                    {
+                        "value": "IL",
+                        "text": "Israel",
+                        "text_s": "Israel"
+                    },
+                    {
+                        "value": "IT",
+                        "text": "Italy",
+                        "text_s": "Italy"
+                    },
+                    {
+                        "value": "JM",
+                        "text": "Jamaica",
+                        "text_s": "Jamaica"
+                    },
+                    {
+                        "value": "JP",
+                        "text": "Japan",
+                        "text_s": "Japan"
+                    },
+                    {
+                        "value": "JO",
+                        "text": "Jordan",
+                        "text_s": "Jordan"
+                    },
+                    {
+                        "value": "KZ",
+                        "text": "Kazakhstan",
+                        "text_s": "Kazakhstan"
+                    },
+                    {
+                        "value": "KE",
+                        "text": "Kenya",
+                        "text_s": "Kenya"
+                    },
+                    {
+                        "value": "KI",
+                        "text": "Kiribati",
+                        "text_s": "Kiribati"
+                    },
+                    {
+                        "value": "XK",
+                        "text": "Kosovo",
+                        "text_s": "Kosovo"
+                    },
+                    {
+                        "value": "KW",
+                        "text": "Kuwait",
+                        "text_s": "Kuwait"
+                    },
+                    {
+                        "value": "KG",
+                        "text": "Kyrgyzstan",
+                        "text_s": "Kyrgyzstan"
+                    },
+                    {
+                        "value": "LA",
+                        "text": "Laos",
+                        "text_s": "Laos"
+                    },
+                    {
+                        "value": "LV",
+                        "text": "Latvia",
+                        "text_s": "Latvia"
+                    },
+                    {
+                        "value": "LB",
+                        "text": "Lebanon",
+                        "text_s": "Lebanon"
+                    },
+                    {
+                        "value": "LS",
+                        "text": "Lesotho",
+                        "text_s": "Lesotho"
+                    },
+                    {
+                        "value": "LR",
+                        "text": "Liberia",
+                        "text_s": "Liberia"
+                    },
+                    {
+                        "value": "LY",
+                        "text": "Libya",
+                        "text_s": "Libya"
+                    },
+                    {
+                        "value": "LI",
+                        "text": "Liechtenstein",
+                        "text_s": "Liechtenstein"
+                    },
+                    {
+                        "value": "LT",
+                        "text": "Lithuania",
+                        "text_s": "Lithuania"
+                    },
+                    {
+                        "value": "LU",
+                        "text": "Luxembourg",
+                        "text_s": "Luxembourg"
+                    },
+                    {
+                        "value": "MO",
+                        "text": "Macau",
+                        "text_s": "Macau"
+                    },
+                    {
+                        "value": "MK",
+                        "text": "Macedonia",
+                        "text_s": "Macedonia"
+                    },
+                    {
+                        "value": "MG",
+                        "text": "Madagascar",
+                        "text_s": "Madagascar"
+                    },
+                    {
+                        "value": "MW",
+                        "text": "Malawi",
+                        "text_s": "Malawi"
+                    },
+                    {
+                        "value": "MY",
+                        "text": "Malaysia",
+                        "text_s": "Malaysia"
+                    },
+                    {
+                        "value": "MV",
+                        "text": "Maldives",
+                        "text_s": "Maldives"
+                    },
+                    {
+                        "value": "ML",
+                        "text": "Mali",
+                        "text_s": "Mali"
+                    },
+                    {
+                        "value": "MT",
+                        "text": "Malta",
+                        "text_s": "Malta"
+                    },
+                    {
+                        "value": "MH",
+                        "text": "Marshall Islands",
+                        "text_s": "Marshall Islnds"
+                    },
+                    {
+                        "value": "MQ",
+                        "text": "Martinique",
+                        "text_s": "Martinique"
+                    },
+                    {
+                        "value": "MR",
+                        "text": "Mauretania",
+                        "text_s": "Mauretania"
+                    },
+                    {
+                        "value": "MU",
+                        "text": "Mauritius",
+                        "text_s": "Mauritius"
+                    },
+                    {
+                        "value": "YT",
+                        "text": "Mayotte",
+                        "text_s": "Mayotte"
+                    },
+                    {
+                        "value": "MX",
+                        "text": "Mexico",
+                        "text_s": "Mexico"
+                    },
+                    {
+                        "value": "FM",
+                        "text": "Micronesia",
+                        "text_s": "Micronesia"
+                    },
+                    {
+                        "value": "MD",
+                        "text": "Moldova",
+                        "text_s": "Moldova"
+                    },
+                    {
+                        "value": "MC",
+                        "text": "Monaco",
+                        "text_s": "Monaco"
+                    },
+                    {
+                        "value": "MN",
+                        "text": "Mongolia",
+                        "text_s": "Mongolia"
+                    },
+                    {
+                        "value": "XM",
+                        "text": "Montenegro",
+                        "text_s": "Montenegro"
+                    },
+                    {
+                        "value": "MS",
+                        "text": "Montserrat",
+                        "text_s": "Montserrat"
+                    },
+                    {
+                        "value": "MA",
+                        "text": "Morocco",
+                        "text_s": "Morocco"
+                    },
+                    {
+                        "value": "MZ",
+                        "text": "Mozambique",
+                        "text_s": "Mozambique"
+                    },
+                    {
+                        "value": "NT",
+                        "text": "NATO",
+                        "text_s": "NATO"
+                    },
+                    {
+                        "value": "NA",
+                        "text": "Namibia",
+                        "text_s": "Namibia"
+                    },
+                    {
+                        "value": "NR",
+                        "text": "Nauru",
+                        "text_s": "Nauru"
+                    },
+                    {
+                        "value": "NP",
+                        "text": "Nepal",
+                        "text_s": "Nepal"
+                    },
+                    {
+                        "value": "NL",
+                        "text": "Netherlands",
+                        "text_s": "Netherlands"
+                    },
+                    {
+                        "value": "NC",
+                        "text": "New Caledonia",
+                        "text_s": "New Caledonia"
+                    },
+                    {
+                        "value": "NZ",
+                        "text": "New Zealand",
+                        "text_s": "New Zealand"
+                    },
+                    {
+                        "value": "NI",
+                        "text": "Nicaragua",
+                        "text_s": "Nicaragua"
+                    },
+                    {
+                        "value": "NE",
+                        "text": "Niger",
+                        "text_s": "Niger"
+                    },
+                    {
+                        "value": "NG",
+                        "text": "Nigeria",
+                        "text_s": "Nigeria"
+                    },
+                    {
+                        "value": "NU",
+                        "text": "Niue",
+                        "text_s": "Niue"
+                    },
+                    {
+                        "value": "NF",
+                        "text": "Norfolk Islands",
+                        "text_s": "Norfolk Islands"
+                    },
+                    {
+                        "value": "KP",
+                        "text": "North Korea",
+                        "text_s": "North Korea"
+                    },
+                    {
+                        "value": "MP",
+                        "text": "North Mariana Islands",
+                        "text_s": "N.Mariana Islnd"
+                    },
+                    {
+                        "value": "NO",
+                        "text": "Norway",
+                        "text_s": "Norway"
+                    },
+                    {
+                        "value": "OM",
+                        "text": "Oman",
+                        "text_s": "Oman"
+                    },
+                    {
+                        "value": "OR",
+                        "text": "Orange",
+                        "text_s": "Orange"
+                    },
+                    {
+                        "value": "PK",
+                        "text": "Pakistan",
+                        "text_s": "Pakistan"
+                    },
+                    {
+                        "value": "PW",
+                        "text": "Palau",
+                        "text_s": "Palau"
+                    },
+                    {
+                        "value": "PS",
+                        "text": "Palestine",
+                        "text_s": "Palestine"
+                    },
+                    {
+                        "value": "PA",
+                        "text": "Panama",
+                        "text_s": "Panama"
+                    },
+                    {
+                        "value": "PG",
+                        "text": "Papua New Guinea",
+                        "text_s": "Pap. New Guinea"
+                    },
+                    {
+                        "value": "PY",
+                        "text": "Paraguay",
+                        "text_s": "Paraguay"
+                    },
+                    {
+                        "value": "PE",
+                        "text": "Peru",
+                        "text_s": "Peru"
+                    },
+                    {
+                        "value": "PH",
+                        "text": "Philippines",
+                        "text_s": "Philippines"
+                    },
+                    {
+                        "value": "PN",
+                        "text": "Pitcairn Islands",
+                        "text_s": "Pitcairn Islnds"
+                    },
+                    {
+                        "value": "PL",
+                        "text": "Poland",
+                        "text_s": "Poland"
+                    },
+                    {
+                        "value": "PT",
+                        "text": "Portugal",
+                        "text_s": "Portugal"
+                    },
+                    {
+                        "value": "PR",
+                        "text": "Puerto Rico",
+                        "text_s": "Puerto Rico"
+                    },
+                    {
+                        "value": "QA",
+                        "text": "Qatar",
+                        "text_s": "Qatar"
+                    },
+                    {
+                        "value": "CG",
+                        "text": "Republic of the Congo",
+                        "text_s": "Rep.of Congo"
+                    },
+                    {
+                        "value": "RE",
+                        "text": "Reunion",
+                        "text_s": "Reunion"
+                    },
+                    {
+                        "value": "RO",
+                        "text": "Romania",
+                        "text_s": "Romania"
+                    },
+                    {
+                        "value": "RU",
+                        "text": "Russian Federation",
+                        "text_s": "Russian Fed."
+                    },
+                    {
+                        "value": "RW",
+                        "text": "Rwanda",
+                        "text_s": "Rwanda"
+                    },
+                    {
+                        "value": "SH",
+                        "text": "Saint Helena",
+                        "text_s": "Saint Helena"
+                    },
+                    {
+                        "value": "KN",
+                        "text": "Saint Kitts and Nevis",
+                        "text_s": "St Kitts&Nevis"
+                    },
+                    {
+                        "value": "WS",
+                        "text": "Samoa",
+                        "text_s": "Samoa"
+                    },
+                    {
+                        "value": "SM",
+                        "text": "San Marino",
+                        "text_s": "San Marino"
+                    },
+                    {
+                        "value": "ST",
+                        "text": "Sao Tome and Principe",
+                        "text_s": "S.Tome,Principe"
+                    },
+                    {
+                        "value": "SA",
+                        "text": "Saudi Arabia",
+                        "text_s": "Saudi Arabia"
+                    },
+                    {
+                        "value": "SN",
+                        "text": "Senegal",
+                        "text_s": "Senegal"
+                    },
+                    {
+                        "value": "XS",
+                        "text": "Serbia",
+                        "text_s": "Serbia"
+                    },
+                    {
+                        "value": "CS",
+                        "text": "Serbia",
+                        "text_s": "Serbia"
+                    },
+                    {
+                        "value": "SC",
+                        "text": "Seychelles",
+                        "text_s": "Seychelles"
+                    },
+                    {
+                        "value": "SL",
+                        "text": "Sierra Leone",
+                        "text_s": "Sierra Leone"
+                    },
+                    {
+                        "value": "SG",
+                        "text": "Singapore",
+                        "text_s": "Singapore"
+                    },
+                    {
+                        "value": "SK",
+                        "text": "Slovakia",
+                        "text_s": "Slovakia"
+                    },
+                    {
+                        "value": "SI",
+                        "text": "Slovenia",
+                        "text_s": "Slovenia"
+                    },
+                    {
+                        "value": "SB",
+                        "text": "Solomon Islands",
+                        "text_s": "Solomon Islands"
+                    },
+                    {
+                        "value": "SO",
+                        "text": "Somalia",
+                        "text_s": "Somalia"
+                    },
+                    {
+                        "value": "ZA",
+                        "text": "South Africa",
+                        "text_s": "South Africa"
+                    },
+                    {
+                        "value": "GS",
+                        "text": "South Georgia and the Southern Sandwich Islands",
+                        "text_s": "S. Sandwich Ins"
+                    },
+                    {
+                        "value": "KR",
+                        "text": "South Korea",
+                        "text_s": "South Korea"
+                    },
+                    {
+                        "value": "ES",
+                        "text": "Spain",
+                        "text_s": "Spain"
+                    },
+                    {
+                        "value": "LK",
+                        "text": "Sri Lanka",
+                        "text_s": "Sri Lanka"
+                    },
+                    {
+                        "value": "LC",
+                        "text": "St. Lucia",
+                        "text_s": "St. Lucia"
+                    },
+                    {
+                        "value": "PM",
+                        "text": "St. Pierre and Miquelon",
+                        "text_s": "St.Pier,Miquel."
+                    },
+                    {
+                        "value": "VC",
+                        "text": "St. Vincent and the Grenadines",
+                        "text_s": "St. Vincent"
+                    },
+                    {
+                        "value": "SD",
+                        "text": "Sudan",
+                        "text_s": "Sudan"
+                    },
+                    {
+                        "value": "SR",
+                        "text": "Suriname",
+                        "text_s": "Suriname"
+                    },
+                    {
+                        "value": "SJ",
+                        "text": "Svalbard",
+                        "text_s": "Svalbard"
+                    },
+                    {
+                        "value": "SZ",
+                        "text": "Swaziland",
+                        "text_s": "Swaziland"
+                    },
+                    {
+                        "value": "SE",
+                        "text": "Sweden",
+                        "text_s": "Sweden"
+                    },
+                    {
+                        "value": "CH",
+                        "text": "Switzerland",
+                        "text_s": "Switzerland"
+                    },
+                    {
+                        "value": "SY",
+                        "text": "Syria",
+                        "text_s": "Syria"
+                    },
+                    {
+                        "value": "TW",
+                        "text": "Taiwan",
+                        "text_s": "Taiwan"
+                    },
+                    {
+                        "value": "TJ",
+                        "text": "Tajikistan",
+                        "text_s": "Tajikistan"
+                    },
+                    {
+                        "value": "TZ",
+                        "text": "Tanzania",
+                        "text_s": "Tanzania"
+                    },
+                    {
+                        "value": "TH",
+                        "text": "Thailand",
+                        "text_s": "Thailand"
+                    },
+                    {
+                        "value": "TG",
+                        "text": "Togo",
+                        "text_s": "Togo"
+                    },
+                    {
+                        "value": "TK",
+                        "text": "Tokelau Islands",
+                        "text_s": "Tokelau Islands"
+                    },
+                    {
+                        "value": "TO",
+                        "text": "Tonga",
+                        "text_s": "Tonga"
+                    },
+                    {
+                        "value": "TT",
+                        "text": "Trinidad and Tobago",
+                        "text_s": "Trinidad,Tobago"
+                    },
+                    {
+                        "value": "TN",
+                        "text": "Tunisia",
+                        "text_s": "Tunisia"
+                    },
+                    {
+                        "value": "TR",
+                        "text": "Turkey",
+                        "text_s": "Turkey"
+                    },
+                    {
+                        "value": "TM",
+                        "text": "Turkmenistan",
+                        "text_s": "Turkmenistan"
+                    },
+                    {
+                        "value": "TC",
+                        "text": "Turks and Caicos Islands",
+                        "text_s": "Turksh Caicosin"
+                    },
+                    {
+                        "value": "TV",
+                        "text": "Tuvalu",
+                        "text_s": "Tuvalu"
+                    },
+                    {
+                        "value": "US",
+                        "text": "USA",
+                        "text_s": "USA"
+                    },
+                    {
+                        "value": "UG",
+                        "text": "Uganda",
+                        "text_s": "Uganda"
+                    },
+                    {
+                        "value": "UA",
+                        "text": "Ukraine",
+                        "text_s": "Ukraine"
+                    },
+                    {
+                        "value": "AE",
+                        "text": "United Arab Emirates",
+                        "text_s": "Utd.Arab Emir."
+                    },
+                    {
+                        "value": "GB",
+                        "text": "United Kingdom",
+                        "text_s": "United Kingdom"
+                    },
+                    {
+                        "value": "UN",
+                        "text": "United Nations",
+                        "text_s": "United Nations"
+                    },
+                    {
+                        "value": "UY",
+                        "text": "Uruguay",
+                        "text_s": "Uruguay"
+                    },
+                    {
+                        "value": "UZ",
+                        "text": "Uzbekistan",
+                        "text_s": "Uzbekistan"
+                    },
+                    {
+                        "value": "VU",
+                        "text": "Vanuatu",
+                        "text_s": "Vanuatu"
+                    },
+                    {
+                        "value": "VA",
+                        "text": "Vatican City",
+                        "text_s": "Vatican City"
+                    },
+                    {
+                        "value": "VE",
+                        "text": "Venezuela",
+                        "text_s": "Venezuela"
+                    },
+                    {
+                        "value": "VN",
+                        "text": "Vietnam",
+                        "text_s": "Vietnam"
+                    },
+                    {
+                        "value": "WF",
+                        "text": "Wallis and Futuna Islands",
+                        "text_s": "Wallis,Futuna"
+                    },
+                    {
+                        "value": "EH",
+                        "text": "West Sahara",
+                        "text_s": "West Sahara"
+                    },
+                    {
+                        "value": "YE",
+                        "text": "Yemen",
+                        "text_s": "Yemen"
+                    },
+                    {
+                        "value": "ZM",
+                        "text": "Zambia",
+                        "text_s": "Zambia"
+                    },
+                    {
+                        "value": "ZW",
+                        "text": "Zimbabwe",
+                        "text_s": "Zimbabwe"
+                    }
                 ]
             },
             components: {
