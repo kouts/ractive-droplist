@@ -3,7 +3,6 @@ A searchable select list for Ractive
 
 Features
 
-
 Click here for documentation and examples
 https://kouts.github.io/ractive-droplist/demo/
 
@@ -13,5 +12,5 @@ In order to start development:
 
 ```sh
 npm i
-npm run dev
+npm run watch
 ```
