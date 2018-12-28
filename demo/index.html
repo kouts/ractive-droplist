@@ -69,13 +69,33 @@
             <p>This page includes basic documentation and examples for the ractive-droplist component</p>
         </div>
 
+        <h2 class="pb-2">Quick demo</h2>
+
         <div class="row mb-3">
             <div class="col-sm-6">
-                <h2 class="pb-2">Quick demo</h2>
-                <droplist list="{{countries}}" value="{{selected_value}}" show_list_on_open="true" on-change="droplist_changed">
+                <droplist 
+                    list="{{countries}}" 
+                    value="{{selected_value}}" 
+                    show_list_on_open="true" 
+                    on-change="droplist_changed"
+                    label="Countries"
+                >
                     <span title="{{text}}">{{{text_highlighted}}}</span>
                 </droplist>
             </div>
+
+            <!--
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Countries</label>
+                    <select class="form-control">
+                        {{#countries}}
+                            <option value="{{value}}">{{text}}</option>
+                        {{/}}
+                    </select>
+                </div>
+            </div>
+            -->
         </div>
 
     </script>

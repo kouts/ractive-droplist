@@ -1,23 +1,23 @@
 <style>
     .hidden-out-of-view {position: absolute; top: -9999px; left: -9999px;}
-    .droplist .btn{background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-size: 8px 10px;; background-position: right 0.375rem center;}
-    .droplist .droplist-results {height: auto; overflow-x: hidden; border-top: none;}
+    .droplist .btn.dropdown-toggle::after {float: right; margin-top:10px;}    
+    .droplist .droplist-results {height: auto; overflow-x: hidden;}
     .droplist .dropdown-menu a.active {background-color: #f8f9fa; color: #16181b;}
     .droplist .dropdown-menu a.selected,  .droplist .dropdown-menu a.active.selected {background-color: #007bff; color: #fff;}
     .droplist .dropdown-menu[x-placement="top-start"] .d-flex {flex-direction: column-reverse !important;}
     .droplist mark {background-color: #ffffcc; padding: 0;}
-    input.is-invalid ~ .droplist > button  {border: 1px solid red;}
+    input.is-invalid ~ .droplist > button  {border: 1px solid #dc3545;}
 </style>
 
 <div class="{{class}} droplist-container" class-hidden="fp.hidden">
     {{#if label}}
-        <label class="oh nowrap-ellipsis {{fp.required ? 'required' : ''}}">
+        <label class="text-truncate align-middle {{fp.required ? 'required' : ''}}">
             {{label}}
         </label>
     {{/if}}
     <input type="text" name="{{name}}" value="{{value}}" class="hidden-out-of-view" droplist-validator-field {{fp.required ? 'required="true" data-rule-not-zeros="true"' : '' }} />
     <div class="dropdown droplist" as-popper="{placement: 'bottom-start', enable_arrows: false}">
-        <button type="button" class="btn btn-light w-100 text-left" popper-trigger aria-haspopup="true" aria-expanded="{{menu_open ? 'true' : 'false'}}" {{fp.disabled ? 'disabled' : ''}}>
+        <button type="button" class="btn btn-light dropdown-toggle w-100 text-left" popper-trigger aria-haspopup="true" aria-expanded="{{menu_open ? 'true' : 'false'}}" {{fp.disabled ? 'disabled' : ''}}>
             {{{selected_text ? selected_text : '&nbsp;'}}}
         </button>
         <div class="dropdown-menu w-100 pt-0" popper on-popper_before_open="" on-popper_open="['open_menu']" on-popper_before_close="" on-popper_close="['close_menu']">
