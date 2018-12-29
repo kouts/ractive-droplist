@@ -53,6 +53,13 @@ module.exports = {
                 exclude: /(node_modules|bower_components)/,
                 use: [
                     {
+                        loader: 'babel-loader',
+                        options: {
+                            babelrc: false,
+                            presets: ['@babel/preset-env']
+                        }                        
+                    },
+                    {
                         loader: 'ractive-bin-loader'
                     }                    
                 ]

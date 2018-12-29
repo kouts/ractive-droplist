@@ -38,6 +38,13 @@
         :not(pre) > code[class*="language-"], pre[class*="language-"] {
             background-color: #f7f7f9;
         }
+        /* Needed for the more options example */
+        .animals-dropdown .btn.btn-light {
+            background: linear-gradient(to bottom, #fefcea 0%,#f1da36 100%);
+        }
+        .animals-dropdown .dropdown-menu {
+            background: #fefce8;
+        }        
     </style>
 </head>
 
@@ -79,7 +86,7 @@
             <div class="col-sm-6">
                 <droplist 
                     list="{{countries}}" 
-                    value="{{selected_value}}" 
+                    value="{{selected_country}}" 
                     show_list_on_open="true" 
                     label="Countries"
                 >
@@ -110,6 +117,7 @@
                     <li>Dropdown closes by clicking anywhere on the screen or by hitting the esc key</li>
                     <li>Exposes a 'change' event when the selected value changes</li>
                     <li>Configure whether the full list is shown on open or not</li>
+                    <li>Works with any Array of Objects structure (Configurable value - text mapping)</li>
                 </ul>
             </div>
         </div>
@@ -159,19 +167,19 @@
                                 droplist: RactiveDroplist
                             },
                             data: {
-                                selected_value: "1",
+                                list_value: '1',
                                 list: [
                                     {
-                                        value: "1",
-                                        text: "Option 1"
+                                        value: '1',
+                                        text: 'Option 1'
                                     },
                                     {
-                                        value: "2",
-                                        text: "Option 2"
+                                        value: '2',
+                                        text: 'Option 2'
                                     },
                                     {
-                                        value: "3",
-                                        text: "Option 3"
+                                        value: '3',
+                                        text: 'Option 3'
                                     },
                                     ...                                                                          
                                 ]
@@ -184,15 +192,133 @@
                 <pre>
                     <code class="language-html" as-code>
                         <!--
-                            <droplist list="{{list}}" value="{{selected_value}}" show_list_on_open="true" label="'My list'">
+                            <droplist list="{{list}}" value="{{list_value}}" show_list_on_open="true" label="'My list'">
                                 <span title="{{text}}">{{{text_highlighted}}}</span>
                             </droplist>
                         -->
                     </code>
                 </pre>
 
+                <h5>Example</h5>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <droplist list="{{list}}" value="{{list_value}}" show_list_on_open="true" label="'My list'">
+                            <span title="{{text}}">{{{text_highlighted}}}</span>
+                        </droplist>
+                    </div>
+                </div>
+
             </div>
         </div>
+
+        <div class="row mb40">
+            <div class="col-sm-12">
+                <h2>Events</h2>
+                <p>
+                    ractive-droplist exposes a change event which fires when it's selected value changes.<br />
+                    The change event takes a second parameter after the "context" in which the an object with the selected line is returned.
+                </p>
+                <pre>
+                    <code class="language-html" as-code>
+                        <!--
+                            <droplist list="{{list}}" value="{{second_list_value}}" show_list_on_open="true" label="'My list'" on-change="@global.alert(@context.get('value'))">
+                                <span title="{{text}}">{{{text_highlighted}}}</span>
+                            </droplist>
+                        -->
+                    </code>
+                </pre>
+                <!--
+                    on: {
+                        change_event: function(ctx, selected_line){
+                            console.log(selected_line);
+                        }
+                    }
+                -->
+
+                <h5>Example</h5>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <droplist list="{{list}}" value="{{second_list_value}}" show_list_on_open="true" label="'My list'" on-change="@global.alert(@context.get('value'))">
+                            <span title="{{text}}">{{{text_highlighted}}}</span>
+                        </droplist>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb40">
+            <div class="col-sm-12">
+                <h2>More options</h2>
+                <p>
+                    ractive-droplist takes an Array of Objects as it's input list. The default mapping of each Object is a value and a text attribute.<br />
+                    You can configure this mapping by setting the as_value and as_text attributes on the droplist component.
+                </p>
+                <p>By default ractive-droplist searches the text attribute but you can also define an additional attribute to search in by setting the add_search attribute</p>
+                <p>There are also additional options for styling the dropdown, set the max-height of the dropdown and also set whether the list will be shown when the dropdown opens.</p>
+                <pre>
+                    <code class="language-html" as-code>
+                        <!--
+                            <droplist 
+                                list="{{animals}}" 
+                                value="{{selected_animal}}" 
+                                show_list_on_open="true" 
+                                label="'Animals'" 
+                                on-change="@global.alert(@context.get('value'))"
+                                as_value="'id'"
+                                as_text="'animal_name'"
+                                add_search="'animal_sci_name'"
+                                maxheight="300"
+                                class="animals-dropdown"
+                                show_list_on_open="false"
+                            >
+                                <span title="{{text}}">{{{text_highlighted}}}</span>
+                            </droplist>
+                        -->
+                    </code>
+                </pre>
+                <!--
+                    on: {
+                        change_event: function(ctx, selected_line){
+                            console.log(selected_line);
+                        }
+                    }
+                -->
+
+                <h5>Example</h5>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <droplist 
+                            list="{{animals}}" 
+                            value="{{selected_animal}}" 
+                            show_list_on_open="true" 
+                            label="'Animals'" 
+                            on-change="@global.alert(@context.get('value'))"
+                            as_value="'id'"
+                            as_text="'animal_name'"
+                            add_search="'animal_sci_name'"
+                            maxheight="300"
+                            class="animals-dropdown"
+                            show_list_on_open="false"
+                        >
+                            <span title="{{text}}">{{{text_highlighted}}}</span>
+                        </droplist>
+                    </div>
+                </div>
+
+                <div class="row mb40"></div>
+                <div class="row mb40"></div>
+                <div class="row mb40"></div>
+                <div class="row mb40"></div>
+                <div class="row mb40"></div>
+                <div class="row mb40"></div>
+                <div class="row mb40"></div>
+                <div class="row mb40"></div>
+
+            </div>
+        </div>
+
+
 
     </script>
 
@@ -243,7 +369,7 @@
             target: '#app',
             template: '#app-template',
             data: {
-                selected_value: 'CH',
+                selected_country: 'CH',
                 countries: [
                     /*
                     {
@@ -1492,12 +1618,159 @@
                         "text": "Zimbabwe",
                         "text_s": "Zimbabwe"
                     }
+                ],
+                list_value: '1',
+                second_list_value: '1',
+                list: [
+                    {
+                        value: '1',
+                        text: 'Option 1'
+                    },
+                    {
+                        value: '2',
+                        text: 'Option 2'
+                    },
+                    {
+                        value: '3',
+                        text: 'Option 3'
+                    }
+                ],
+                selected_animal: 5,
+                animals: [
+                    {
+                        "id": 1,
+                        "animal_name": "Horned puffin",
+                        "animal_sci_name": "Fratercula corniculata"
+                    },
+                    {
+                        "id": 2,
+                        "animal_name": "Brown brocket",
+                        "animal_sci_name": "Mazama gouazoubira"
+                    },
+                    {
+                        "id": 3,
+                        "animal_name": "Pocket gopher (unidentified)",
+                        "animal_sci_name": "unavailable"
+                    },
+                    {
+                        "id": 4,
+                        "animal_name": "Snake, western patch-nosed",
+                        "animal_sci_name": "Salvadora hexalepis"
+                    },
+                    {
+                        "id": 5,
+                        "animal_name": "Shelduck, common",
+                        "animal_sci_name": "Tadorna tadorna"
+                    },
+                    {
+                        "id": 6,
+                        "animal_name": "Shelduck, common",
+                        "animal_sci_name": "Tadorna tadorna"
+                    },
+                    {
+                        "id": 7,
+                        "animal_name": "Monitor, two-banded",
+                        "animal_sci_name": "Varanus salvator"
+                    },
+                    {
+                        "id": 8,
+                        "animal_name": "Eastern quoll",
+                        "animal_sci_name": "Dasyurus viverrinus"
+                    },
+                    {
+                        "id": 9,
+                        "animal_name": "King vulture",
+                        "animal_sci_name": "Sarcorhamphus papa"
+                    },
+                    {
+                        "id": 10,
+                        "animal_name": "Buffalo, asian water",
+                        "animal_sci_name": "Bubalus arnee"
+                    },
+                    {
+                        "id": 11,
+                        "animal_name": "African lynx",
+                        "animal_sci_name": "Felis caracal"
+                    },
+                    {
+                        "id": 12,
+                        "animal_name": "Blue fox",
+                        "animal_sci_name": "Alopex lagopus"
+                    },
+                    {
+                        "id": 13,
+                        "animal_name": "Violet-crested turaco",
+                        "animal_sci_name": "Tauraco porphyrelophus"
+                    },
+                    {
+                        "id": 14,
+                        "animal_name": "Beaver, european",
+                        "animal_sci_name": "Castor fiber"
+                    },
+                    {
+                        "id": 15,
+                        "animal_name": "Squirrel, richardson's ground",
+                        "animal_sci_name": "Spermophilus richardsonii"
+                    },
+                    {
+                        "id": 16,
+                        "animal_name": "Blue-faced booby",
+                        "animal_sci_name": "Sula dactylatra"
+                    },
+                    {
+                        "id": 17,
+                        "animal_name": "Wild water buffalo",
+                        "animal_sci_name": "Bubalus arnee"
+                    },
+                    {
+                        "id": 18,
+                        "animal_name": "Tenrec, tailless",
+                        "animal_sci_name": "Tenrec ecaudatus"
+                    },
+                    {
+                        "id": 19,
+                        "animal_name": "Deer, roe",
+                        "animal_sci_name": "Capreolus capreolus"
+                    },
+                    {
+                        "id": 20,
+                        "animal_name": "Python, carpet",
+                        "animal_sci_name": "Morelia spilotes variegata"
+                    },
+                    {
+                        "id": 21,
+                        "animal_name": "Lemming, arctic",
+                        "animal_sci_name": "Dicrostonyx groenlandicus"
+                    },
+                    {
+                        "id": 22,
+                        "animal_name": "Blue racer",
+                        "animal_sci_name": "Coluber constrictor foxii"
+                    },
+                    {
+                        "id": 23,
+                        "animal_name": "Capybara",
+                        "animal_sci_name": "Hydrochoerus hydrochaeris"
+                    },
+                    {
+                        "id": 24,
+                        "animal_name": "Least chipmunk",
+                        "animal_sci_name": "Eutamias minimus"
+                    },
+                    {
+                        "id": 25,
+                        "animal_name": "Skink, blue-tongued",
+                        "animal_sci_name": "Tiliqua scincoides"
+                    }
                 ]
             },
             components: {
                 droplist: RactiveDroplist
             },
             on: {
+                change_event: function(ctx){
+                    console.log(ctx.get());
+                }
             }
         });
     </script>

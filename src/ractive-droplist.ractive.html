@@ -25,9 +25,9 @@
                 <div class="droplist-input-wrapper pt-2 pr-2 pb-0 pl-2">
                     <input type="text" class="form-control" autocomplete="off" value="{{text_value}}" on-keydown="['keydown']" on-click="@event.stopPropagation()" placeholder="{{type_to_search}}" />
                 </div>
-                <div class="droplist-results mt-2" style="max-height: {{maxheight}}px; {{show_list_on_open || text_value ? '' :'height:0px; margin-top:0px;'}}">
+                <div class="droplist-results mt-2" style="max-height: {{maxheight}}px; {{show_list_on_open || text_value ? '' :'height:0px; margin-top:0px !important;'}}">
                     {{#each filtered}}
-                        <a href="javascript:;" class="dropdown-item" class-selected="value == ~/value" class-active="value == active_value" on-click="['set_selected']" on-mouseenter="['set_active']" on-mouseup="@this.find('input').focus(), set_active">
+                        <a href="javascript:;" class="dropdown-item" class-selected="value == ~/value" class-active="value == active_value" on-click="['set_selected']" on-mouseenter="['set_active']" on-mouseup="['set_active']">
                             {{>content}}
                         </a>
                     {{else}}
@@ -55,7 +55,29 @@
         template: $TEMPLATE,
         css: $CSS,
         data: function() {
-            return {no_results: 'No Results', type_to_search: 'Type to search', label: '', class: '', menu_open: false, list: [], value: '', active_value: '', text_value: '', show_list_on_open: true, as_value: 'value', as_text: 'text', maxheight: 210, add_search: '', fp:{required: false, hidden:false, disabled: false}, fp_event: null}
+            return {
+                no_results: 'No Results', 
+                type_to_search: 'Type to search',
+                label: '',
+                class: '',
+                menu_open: false,
+                list: [],
+                value: '',
+                active_value: '',
+                text_value: '',
+                show_list_on_open: true,
+                as_value: 'value',
+                as_text: 'text',
+                maxheight: 210,
+                add_search: '',
+                fp:{
+                    required: false,
+                    hidden:false,
+                    disabled: false
+                },
+                fp_event: null,
+                selected_line: {}
+            }
         },
         decorators: {
             popper: RactiveDecoratorsPopper
@@ -147,14 +169,14 @@
                 if (k === 13) {
                     ctx.original.preventDefault();
                     this.set('value', this.get('filtered').length == 1 ? this.get('filtered.0.value') : this.get('active_value'));
-                    this.fire('change', ctx, {selected_line: ctx.get()});
+                    this.fire('change');
                     this.find('[popper]').decorator.close();
                     this.find('button[popper-trigger]').focus();
                 }
             },
             set_selected: function(ctx) {
                 this.set('value', ctx.get('value'));
-                this.fire('change', ctx, {selected_line: ctx.get()});
+                this.fire('change');
                 this.find('[popper]').decorator.close();
                 this.find('button[popper-trigger]').focus();
             },
@@ -179,7 +201,9 @@
             close_menu: function(){
                 this.set('menu_open', false);
             },
-            change: function(){
+            change: function(ctx){
+                let selected_line = this.get('filtered').filter(o => o.value == ctx.get('value'))[0];
+                this.set('selected_line', selected_line);
                 if(this.get('fp_event')){
                     this.exportFpData(this.find('input'), this.get('fp_event'));
                 }
