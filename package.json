@@ -1,7 +1,7 @@
 {
-  "//": "To use type: npm run dev",
+  "//": "To use type: npm run watch",
   "name": "ractive-droplist",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A searchable select list for Ractive ",
   "main": "dist/ractive-droplist.js",
   "repository": "https://github.com/kouts/ractive-droplist",

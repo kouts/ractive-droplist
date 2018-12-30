@@ -115,9 +115,10 @@
                     <li>Lightweight, minified version is &lt; <strong>15kb</strong></li>
                     <li>Navigate through the list using the arrow keys</li>
                     <li>Dropdown closes by clicking anywhere on the screen or by hitting the esc key</li>
-                    <li>Exposes a 'change' event when the selected value changes</li>
+                    <li>Exposes a "change" event when a user changes the selected option</li>
                     <li>Configure whether the full list is shown on open or not</li>
-                    <li>Works with any Array of Objects structure (Configurable value - text mapping)</li>
+                    <li>Works with any Array of Objects structure (configurable value - text mapping)</li>
+                    <li>Comes with Bootstrap 4 styling by default but it's also highly customizable via user CSS classes</li>
                 </ul>
             </div>
         </div>
@@ -216,8 +217,7 @@
             <div class="col-sm-12">
                 <h2>Events</h2>
                 <p>
-                    ractive-droplist exposes a change event which fires when it's selected value changes.<br />
-                    The change event takes a second parameter after the "context" in which the an object with the selected line is returned.
+                    ractive-droplist exposes a change event which fires when a user changes the selected option.<br />
                 </p>
                 <pre>
                     <code class="language-html" as-code>
@@ -306,19 +306,124 @@
                     </div>
                 </div>
 
-                <div class="row mb40"></div>
-                <div class="row mb40"></div>
-                <div class="row mb40"></div>
-                <div class="row mb40"></div>
-                <div class="row mb40"></div>
-                <div class="row mb40"></div>
-                <div class="row mb40"></div>
-                <div class="row mb40"></div>
+            </div>
+        </div>
+
+        <div class="row mb40">
+            <div class="col-sm-12">
+                <h2>Options</h2>
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>no_results</td>
+                            <td>Text to display when there are no results found</td>
+                            <td>String</td>
+                            <td>No Results</td>
+                        </tr>
+                        <tr>
+                            <td>type_to_search</td>
+                            <td>Text to display inside input search (placeholder)</td>
+                            <td>String</td>
+                            <td>Type to search</td>
+                        </tr>
+                        <tr>
+                            <td>label</td>
+                            <td>Label for dropdown</td>
+                            <td>String</td>
+                            <td><em>Empty</em></td>
+                        </tr>
+                        <tr>
+                            <td>class</td>
+                            <td>Extra css classes for the container element</td>
+                            <td>String</td>
+                            <td><em>Empty</em></td>
+                        </tr>
+                        <tr>
+                            <td>list</td>
+                            <td>List of options for the dropdown</td>
+                            <td>Array of Objects</td>
+                            <td><em>Empty</em></td>
+                        </tr>
+                        <tr>
+                            <td>show_list_on_open</td>
+                            <td>Whether the list should show on open</td>
+                            <td>Boolean</td>
+                            <td>true</td>
+                        </tr>
+                        <tr>
+                            <td>as_value</td>
+                            <td>Attribute of the list Object for the value of the dropdown</td>
+                            <td>String</td>
+                            <td>value</td>
+                        </tr>
+                        <tr>
+                            <td>as_text</td>
+                            <td>Attribute of the list Object for the text of the dropdown</td>
+                            <td>String</td>
+                            <td>text</td>
+                        </tr>
+                        <tr>
+                            <td>maxheight</td>
+                            <td>max-height of the dropdown (in pixels)</td>
+                            <td>Number</td>
+                            <td>210</td>
+                        </tr>
+                        <tr>
+                            <td>add_search</td>
+                            <td>Additional attribute of the list Object to search</td>
+                            <td>String</td>
+                            <td><em>Empty</em></td>
+                        </tr>
+                        <tr>
+                            <td>fp</td>
+                            <td>Object with field properties as described below</td>
+                            <td>Object</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>fp.required</td>
+                            <td>If true then the dropdown becomes required</td>
+                            <td>Boolean</td>
+                            <td>false</td>
+                        </tr>
+                        <tr>
+                            <td>fp.hidden</td>
+                            <td>If true then the dropdown gets hidden</td>
+                            <td>Boolean</td>
+                            <td>false</td>
+                        </tr>
+                        <tr>
+                            <td>fp.disabled</td>
+                            <td>If true then the dropdown becomes disabled</td>
+                            <td>Boolean</td>
+                            <td>false</td>
+                        </tr>
+                    </tbody>
+                </table>
 
             </div>
         </div>
 
+        <div class="row mb40">
+            <div class="col-sm-12">
+                <h2>Changelog</h2>
 
+                <h5>version 1.0.0</h5>
+                <ul>
+                    <li>Initial release</li>
+                </ul>
+
+            </div>
+        </div>
 
     </script>
 
