@@ -2,7 +2,7 @@
 A searchable select list for Ractive 
 
 Features
-- Lightweight, minified version is &lt; ***15kb***
+- Lightweight, minified version is &lt; **15kb**
 - Navigate through the list using the arrow keys
 - Dropdown closes by clicking anywhere on the screen or by hitting the esc key
 - Exposes a "change" event when a user changes the selected option
