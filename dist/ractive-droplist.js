@@ -377,6 +377,20 @@ function uuid() {
   return lut[d0 & 0xff] + lut[d0 >> 8 & 0xff] + lut[d0 >> 16 & 0xff] + lut[d0 >> 24 & 0xff] + '-' + lut[d1 & 0xff] + lut[d1 >> 8 & 0xff] + '-' + lut[d1 >> 16 & 0x0f | 0x40] + lut[d1 >> 24 & 0xff] + '-' + lut[d2 & 0x3f | 0x80] + lut[d2 >> 8 & 0xff] + '-' + lut[d2 >> 16 & 0xff] + lut[d2 >> 24 & 0xff] + lut[d3 & 0xff] + lut[d3 >> 8 & 0xff] + lut[d3 >> 16 & 0xff] + lut[d3 >> 24 & 0xff];
 }
 
+function esc(string) {
+  var entityMap = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': '&quot;',
+    "'": '&#39;',
+    "/": '&#x2F;'
+  };
+  return String(string).replace(/[&<>"'\/]/g, function (s) {
+    return entityMap[s];
+  });
+}
+
 /* harmony default export */ var ractive_droplist_ractive = __webpack_exports__["default"] = (external_commonjs_ractive_commonjs2_ractive_amd_ractive_root_Ractive_default.a.extend({
   template: {
     v: 4,
@@ -797,13 +811,13 @@ function uuid() {
       }
     }
   },
-  css: " .hidden {display: none;} .hidden-out-of-view {position: absolute; top: -9999px; left: -9999px;} .droplist .btn.dropdown-toggle::after {float: right; margin-top:10px;} .droplist .droplist-results {height: auto; overflow-x: hidden;} .droplist .dropdown-menu a.active {background-color: #f8f9fa; color: #16181b;} .droplist .dropdown-menu a.selected, .droplist .dropdown-menu a.active.selected {background-color: #007bff; color: #fff;} .droplist .dropdown-menu[x-placement=\"top-start\"] .d-flex {flex-direction: column-reverse !important;} .droplist mark {background-color: #ffffcc; padding: 0;} input.is-invalid ~ .droplist > button {border: 1px solid #dc3545;}",
+  css: " .hidden {display: none;} .hidden-out-of-view {position: absolute; top: -9999px; left: -9999px;} .droplist .btn.dropdown-toggle::after {float: right; margin-top:10px;} .droplist .droplist-results {height: auto; overflow-x: hidden;} .droplist .dropdown-menu a.active {background-color: #f8f9fa; color: #16181b;} .droplist .dropdown-menu a.selected, .droplist .dropdown-menu a.active.selected {background-color: #007bff; color: #fff;} .droplist .dropdown-menu[x-placement=\"top-start\"] .d-flex {flex-direction: column-reverse !important;} .droplist mark {background-color: #ffffcc; padding: 0;} input.is-invalid ~ .droplist > button {border: 1px solid #dc3545;} .droplist .droplist-results .dropdown-item:empty:before, .droplist-results .dropdown-item > span:empty:before {content: \"\\00a0\";}",
   data: function data() {
     return {
       no_results: 'No Results',
       type_to_search: 'Type to search',
       label: '',
-      class: '',
+      "class": '',
       menu_open: false,
       list: [],
       value: '',
@@ -841,7 +855,9 @@ function uuid() {
         k.add_search = o[this.get('add_search')] ? o[this.get('add_search')] : ''; // add_search is an additional field to search in list. Search results based on two criteria.
 
         if (k.text.toUpperCase().indexOf(tosearch.toUpperCase()) >= 0 || k.add_search.toUpperCase().indexOf(tosearch.toUpperCase()) >= 0) {
-          // Find mathed text from list based on text input.  We do that for text case. Matches both capital and lower case letters 
+          // Escape text so that it's safe
+          k.text = esc(k.text); // Find mathed text from list based on text input.  We do that for text case. Matches both capital and lower case letters 
+
           var search_text = new RegExp(tosearch, 'i').exec(k.text); // TODO: Check this if else why needed now and not in the past
 
           if (search_text && search_text[0].length > 0) {
