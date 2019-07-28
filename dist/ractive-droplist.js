@@ -842,6 +842,11 @@ function esc(string) {
   },
   computed: {
     filtered: function filtered() {
+      // Bail if there is no list defined
+      if (typeof this.get('list') === 'undefined') {
+        return;
+      }
+
       var show_list_on_open = this.get('show_list_on_open');
       var tosearch = this.get('text_value');
       var list = show_list_on_open || !show_list_on_open && tosearch.length > 0 ? this.get('list') : []; // Rename keys and filter at the same time
@@ -891,7 +896,7 @@ function esc(string) {
   observe: {
     'filtered': {
       handler: function handler(newValue, oldValue, keypath, idx) {
-        if (newValue) {
+        if (newValue && this.find('[popper]').decorator.popper) {
           this.find('[popper]').decorator.popper.scheduleUpdate();
         }
       },
