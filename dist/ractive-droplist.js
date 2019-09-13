@@ -854,9 +854,9 @@ function esc(string) {
       return list.reduce(function (arr, o) {
         var k = {
           value: o[this.get('as_value')],
-          text: o[this.get('as_text')] // If add_search doesnt exist then set it empty value.
+          text: o[this.get('as_text')]
+        }; // If add_search doesnt exist then set it empty value.
 
-        };
         k.add_search = o[this.get('add_search')] ? o[this.get('add_search')] : ''; // add_search is an additional field to search in list. Search results based on two criteria.
 
         if (k.text.toUpperCase().indexOf(tosearch.toUpperCase()) >= 0 || k.add_search.toUpperCase().indexOf(tosearch.toUpperCase()) >= 0) {
