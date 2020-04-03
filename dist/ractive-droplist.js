@@ -111,6 +111,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
 // EXTERNAL MODULE: external {"commonjs":"ractive","commonjs2":"ractive","amd":"ractive","root":"Ractive"}
@@ -134,10 +135,28 @@ function canOverflow(overflow, skipOverflowHiddenElements) {
   return overflow !== 'visible' && overflow !== 'clip';
 }
 
+function getFrameElement(el) {
+  if (!el.ownerDocument || !el.ownerDocument.defaultView) {
+    return null;
+  }
+
+  return el.ownerDocument.defaultView.frameElement;
+}
+
+function isHiddenByFrame(el) {
+  var frame = getFrameElement(el);
+
+  if (!frame) {
+    return false;
+  }
+
+  return frame.clientHeight < el.scrollHeight || frame.clientWidth < el.scrollWidth;
+}
+
 function isScrollable(el, skipOverflowHiddenElements) {
   if (el.clientHeight < el.scrollHeight || el.clientWidth < el.scrollWidth) {
     var style = getComputedStyle(el, null);
-    return canOverflow(style.overflowY, skipOverflowHiddenElements) || canOverflow(style.overflowX, skipOverflowHiddenElements);
+    return canOverflow(style.overflowY, skipOverflowHiddenElements) || canOverflow(style.overflowX, skipOverflowHiddenElements) || isHiddenByFrame(el);
   }
 
   return false;
@@ -215,14 +234,14 @@ function alignNearest(scrollingEdgeStart, scrollingEdgeEnd, scrollingSize, scrol
     var frame = frames[index];
 
     var _frame$getBoundingCli = frame.getBoundingClientRect(),
-        _height = _frame$getBoundingCli.height,
-        _width = _frame$getBoundingCli.width,
-        _top = _frame$getBoundingCli.top,
+        height = _frame$getBoundingCli.height,
+        width = _frame$getBoundingCli.width,
+        top = _frame$getBoundingCli.top,
         right = _frame$getBoundingCli.right,
         bottom = _frame$getBoundingCli.bottom,
-        _left = _frame$getBoundingCli.left;
+        left = _frame$getBoundingCli.left;
 
-    if (scrollMode === 'if-needed' && targetTop >= 0 && targetLeft >= 0 && targetBottom <= viewportHeight && targetRight <= viewportWidth && targetTop >= _top && targetBottom <= bottom && targetLeft >= _left && targetRight <= right) {
+    if (scrollMode === 'if-needed' && targetTop >= 0 && targetLeft >= 0 && targetBottom <= viewportHeight && targetRight <= viewportWidth && targetTop >= top && targetBottom <= bottom && targetLeft >= left && targetRight <= right) {
       return computations;
     }
 
@@ -261,29 +280,29 @@ function alignNearest(scrollingEdgeStart, scrollingEdgeEnd, scrollingSize, scrol
       inlineScroll = Math.max(0, inlineScroll + viewportX);
     } else {
       if (block === 'start') {
-        blockScroll = targetBlock - _top - borderTop;
+        blockScroll = targetBlock - top - borderTop;
       } else if (block === 'end') {
         blockScroll = targetBlock - bottom + borderBottom + scrollbarHeight;
       } else if (block === 'nearest') {
-        blockScroll = alignNearest(_top, bottom, _height, borderTop, borderBottom + scrollbarHeight, targetBlock, targetBlock + targetHeight, targetHeight);
+        blockScroll = alignNearest(top, bottom, height, borderTop, borderBottom + scrollbarHeight, targetBlock, targetBlock + targetHeight, targetHeight);
       } else {
-        blockScroll = targetBlock - (_top + _height / 2) + scrollbarHeight / 2;
+        blockScroll = targetBlock - (top + height / 2) + scrollbarHeight / 2;
       }
 
       if (inline === 'start') {
-        inlineScroll = targetInline - _left - borderLeft;
+        inlineScroll = targetInline - left - borderLeft;
       } else if (inline === 'center') {
-        inlineScroll = targetInline - (_left + _width / 2) + scrollbarWidth / 2;
+        inlineScroll = targetInline - (left + width / 2) + scrollbarWidth / 2;
       } else if (inline === 'end') {
         inlineScroll = targetInline - right + borderRight + scrollbarWidth;
       } else {
-        inlineScroll = alignNearest(_left, right, _width, borderLeft, borderRight + scrollbarWidth, targetInline, targetInline + targetWidth, targetWidth);
+        inlineScroll = alignNearest(left, right, width, borderLeft, borderRight + scrollbarWidth, targetInline, targetInline + targetWidth, targetWidth);
       }
 
       var scrollLeft = frame.scrollLeft,
           scrollTop = frame.scrollTop;
-      blockScroll = Math.max(0, Math.min(scrollTop + blockScroll, frame.scrollHeight - _height + scrollbarHeight));
-      inlineScroll = Math.max(0, Math.min(scrollLeft + inlineScroll, frame.scrollWidth - _width + scrollbarWidth));
+      blockScroll = Math.max(0, Math.min(scrollTop + blockScroll, frame.scrollHeight - height + scrollbarHeight));
+      inlineScroll = Math.max(0, Math.min(scrollLeft + inlineScroll, frame.scrollWidth - width + scrollbarWidth));
       targetBlock += scrollTop - blockScroll;
       targetInline += scrollLeft - inlineScroll;
     }
