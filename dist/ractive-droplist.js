@@ -140,7 +140,11 @@ function getFrameElement(el) {
     return null;
   }
 
-  return el.ownerDocument.defaultView.frameElement;
+  try {
+    return el.ownerDocument.defaultView.frameElement;
+  } catch (e) {
+    return null;
+  }
 }
 
 function isHiddenByFrame(el) {
@@ -328,7 +332,7 @@ function defaultBehavior(actions, behavior) {
     behavior = 'auto';
   }
 
-  var canSmoothScroll = 'scrollBehavior' in document.body.style;
+  var canSmoothScroll = ('scrollBehavior' in document.body.style);
   actions.forEach(function (_ref) {
     var el = _ref.el,
         top = _ref.top,
