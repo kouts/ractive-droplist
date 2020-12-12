@@ -122,204 +122,10 @@ var external_commonjs_ractive_commonjs2_ractive_amd_ractive_root_Ractive_default
 var external_commonjs_ractive_decorators_popper_commonjs2_ractive_decorators_popper_amd_ractive_decorators_popper_root_RactiveDecoratorsPopper_ = __webpack_require__(1);
 var external_commonjs_ractive_decorators_popper_commonjs2_ractive_decorators_popper_amd_ractive_decorators_popper_root_RactiveDecoratorsPopper_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_ractive_decorators_popper_commonjs2_ractive_decorators_popper_amd_ractive_decorators_popper_root_RactiveDecoratorsPopper_);
 
-// CONCATENATED MODULE: ../node_modules/compute-scroll-into-view/es/index.js
-function isElement(el) {
-  return el != null && typeof el === 'object' && el.nodeType === 1;
-}
+// CONCATENATED MODULE: ../node_modules/compute-scroll-into-view/dist/index.module.js
+function t(t){return null!=t&&"object"==typeof t&&1===t.nodeType}function e(t,e){return(!e||"hidden"!==t)&&"visible"!==t&&"clip"!==t}function n(t,n){if(t.clientHeight<t.scrollHeight||t.clientWidth<t.scrollWidth){var r=getComputedStyle(t,null);return e(r.overflowY,n)||e(r.overflowX,n)||function(t){var e=function(t){if(!t.ownerDocument||!t.ownerDocument.defaultView)return null;try{return t.ownerDocument.defaultView.frameElement}catch(t){return null}}(t);return!!e&&(e.clientHeight<t.scrollHeight||e.clientWidth<t.scrollWidth)}(t)}return!1}function r(t,e,n,r,i,o,l,d){return o<t&&l>e||o>t&&l<e?0:o<=t&&d<=n||l>=e&&d>=n?o-t-r:l>e&&d<n||o<t&&d>n?l-e+i:0}/* harmony default export */ var index_module = (function(e,i){var o=window,l=i.scrollMode,d=i.block,u=i.inline,h=i.boundary,a=i.skipOverflowHiddenElements,c="function"==typeof h?h:function(t){return t!==h};if(!t(e))throw new TypeError("Invalid target");for(var f=document.scrollingElement||document.documentElement,s=[],p=e;t(p)&&c(p);){if((p=p.parentNode)===f){s.push(p);break}p===document.body&&n(p)&&!n(document.documentElement)||n(p,a)&&s.push(p)}for(var g=o.visualViewport?o.visualViewport.width:innerWidth,m=o.visualViewport?o.visualViewport.height:innerHeight,w=window.scrollX||pageXOffset,v=window.scrollY||pageYOffset,W=e.getBoundingClientRect(),b=W.height,H=W.width,y=W.top,M=W.right,E=W.bottom,V=W.left,x="start"===d||"nearest"===d?y:"end"===d?E:y+b/2,I="center"===u?V+H/2:"end"===u?M:V,C=[],T=0;T<s.length;T++){var k=s[T],B=k.getBoundingClientRect(),D=B.height,O=B.width,R=B.top,X=B.right,Y=B.bottom,L=B.left;if("if-needed"===l&&y>=0&&V>=0&&E<=m&&M<=g&&y>=R&&E<=Y&&V>=L&&M<=X)return C;var S=getComputedStyle(k),j=parseInt(S.borderLeftWidth,10),N=parseInt(S.borderTopWidth,10),q=parseInt(S.borderRightWidth,10),z=parseInt(S.borderBottomWidth,10),A=0,F=0,G="offsetWidth"in k?k.offsetWidth-k.clientWidth-j-q:0,J="offsetHeight"in k?k.offsetHeight-k.clientHeight-N-z:0;if(f===k)A="start"===d?x:"end"===d?x-m:"nearest"===d?r(v,v+m,m,N,z,v+x,v+x+b,b):x-m/2,F="start"===u?I:"center"===u?I-g/2:"end"===u?I-g:r(w,w+g,g,j,q,w+I,w+I+H,H),A=Math.max(0,A+v),F=Math.max(0,F+w);else{A="start"===d?x-R-N:"end"===d?x-Y+z+J:"nearest"===d?r(R,Y,D,N,z+J,x,x+b,b):x-(R+D/2)+J/2,F="start"===u?I-L-j:"center"===u?I-(L+O/2)+G/2:"end"===u?I-X+q+G:r(L,X,O,j,q+G,I,I+H,H);var K=k.scrollLeft,P=k.scrollTop;x+=P-(A=Math.max(0,Math.min(P+A,k.scrollHeight-D+J))),I+=K-(F=Math.max(0,Math.min(K+F,k.scrollWidth-O+G)))}C.push({el:k,top:A,left:F})}return C});
+//# sourceMappingURL=index.module.js.map
 
-function canOverflow(overflow, skipOverflowHiddenElements) {
-  if (skipOverflowHiddenElements && overflow === 'hidden') {
-    return false;
-  }
-
-  return overflow !== 'visible' && overflow !== 'clip';
-}
-
-function getFrameElement(el) {
-  if (!el.ownerDocument || !el.ownerDocument.defaultView) {
-    return null;
-  }
-
-  try {
-    return el.ownerDocument.defaultView.frameElement;
-  } catch (e) {
-    return null;
-  }
-}
-
-function isHiddenByFrame(el) {
-  var frame = getFrameElement(el);
-
-  if (!frame) {
-    return false;
-  }
-
-  return frame.clientHeight < el.scrollHeight || frame.clientWidth < el.scrollWidth;
-}
-
-function isScrollable(el, skipOverflowHiddenElements) {
-  if (el.clientHeight < el.scrollHeight || el.clientWidth < el.scrollWidth) {
-    var style = getComputedStyle(el, null);
-    return canOverflow(style.overflowY, skipOverflowHiddenElements) || canOverflow(style.overflowX, skipOverflowHiddenElements) || isHiddenByFrame(el);
-  }
-
-  return false;
-}
-
-function alignNearest(scrollingEdgeStart, scrollingEdgeEnd, scrollingSize, scrollingBorderStart, scrollingBorderEnd, elementEdgeStart, elementEdgeEnd, elementSize) {
-  if (elementEdgeStart < scrollingEdgeStart && elementEdgeEnd > scrollingEdgeEnd || elementEdgeStart > scrollingEdgeStart && elementEdgeEnd < scrollingEdgeEnd) {
-    return 0;
-  }
-
-  if (elementEdgeStart <= scrollingEdgeStart && elementSize <= scrollingSize || elementEdgeEnd >= scrollingEdgeEnd && elementSize >= scrollingSize) {
-    return elementEdgeStart - scrollingEdgeStart - scrollingBorderStart;
-  }
-
-  if (elementEdgeEnd > scrollingEdgeEnd && elementSize < scrollingSize || elementEdgeStart < scrollingEdgeStart && elementSize > scrollingSize) {
-    return elementEdgeEnd - scrollingEdgeEnd + scrollingBorderEnd;
-  }
-
-  return 0;
-}
-
-/* harmony default export */ var es = (function (target, options) {
-  var scrollMode = options.scrollMode,
-      block = options.block,
-      inline = options.inline,
-      boundary = options.boundary,
-      skipOverflowHiddenElements = options.skipOverflowHiddenElements;
-  var checkBoundary = typeof boundary === 'function' ? boundary : function (node) {
-    return node !== boundary;
-  };
-
-  if (!isElement(target)) {
-    throw new TypeError('Invalid target');
-  }
-
-  var scrollingElement = document.scrollingElement || document.documentElement;
-  var frames = [];
-  var cursor = target;
-
-  while (isElement(cursor) && checkBoundary(cursor)) {
-    cursor = cursor.parentNode;
-
-    if (cursor === scrollingElement) {
-      frames.push(cursor);
-      break;
-    }
-
-    if (cursor === document.body && isScrollable(cursor) && !isScrollable(document.documentElement)) {
-      continue;
-    }
-
-    if (isScrollable(cursor, skipOverflowHiddenElements)) {
-      frames.push(cursor);
-    }
-  }
-
-  var viewportWidth = window.visualViewport ? visualViewport.width : innerWidth;
-  var viewportHeight = window.visualViewport ? visualViewport.height : innerHeight;
-  var viewportX = window.scrollX || pageXOffset;
-  var viewportY = window.scrollY || pageYOffset;
-
-  var _target$getBoundingCl = target.getBoundingClientRect(),
-      targetHeight = _target$getBoundingCl.height,
-      targetWidth = _target$getBoundingCl.width,
-      targetTop = _target$getBoundingCl.top,
-      targetRight = _target$getBoundingCl.right,
-      targetBottom = _target$getBoundingCl.bottom,
-      targetLeft = _target$getBoundingCl.left;
-
-  var targetBlock = block === 'start' || block === 'nearest' ? targetTop : block === 'end' ? targetBottom : targetTop + targetHeight / 2;
-  var targetInline = inline === 'center' ? targetLeft + targetWidth / 2 : inline === 'end' ? targetRight : targetLeft;
-  var computations = [];
-
-  for (var index = 0; index < frames.length; index++) {
-    var frame = frames[index];
-
-    var _frame$getBoundingCli = frame.getBoundingClientRect(),
-        height = _frame$getBoundingCli.height,
-        width = _frame$getBoundingCli.width,
-        top = _frame$getBoundingCli.top,
-        right = _frame$getBoundingCli.right,
-        bottom = _frame$getBoundingCli.bottom,
-        left = _frame$getBoundingCli.left;
-
-    if (scrollMode === 'if-needed' && targetTop >= 0 && targetLeft >= 0 && targetBottom <= viewportHeight && targetRight <= viewportWidth && targetTop >= top && targetBottom <= bottom && targetLeft >= left && targetRight <= right) {
-      return computations;
-    }
-
-    var frameStyle = getComputedStyle(frame);
-    var borderLeft = parseInt(frameStyle.borderLeftWidth, 10);
-    var borderTop = parseInt(frameStyle.borderTopWidth, 10);
-    var borderRight = parseInt(frameStyle.borderRightWidth, 10);
-    var borderBottom = parseInt(frameStyle.borderBottomWidth, 10);
-    var blockScroll = 0;
-    var inlineScroll = 0;
-    var scrollbarWidth = 'offsetWidth' in frame ? frame.offsetWidth - frame.clientWidth - borderLeft - borderRight : 0;
-    var scrollbarHeight = 'offsetHeight' in frame ? frame.offsetHeight - frame.clientHeight - borderTop - borderBottom : 0;
-
-    if (scrollingElement === frame) {
-      if (block === 'start') {
-        blockScroll = targetBlock;
-      } else if (block === 'end') {
-        blockScroll = targetBlock - viewportHeight;
-      } else if (block === 'nearest') {
-        blockScroll = alignNearest(viewportY, viewportY + viewportHeight, viewportHeight, borderTop, borderBottom, viewportY + targetBlock, viewportY + targetBlock + targetHeight, targetHeight);
-      } else {
-        blockScroll = targetBlock - viewportHeight / 2;
-      }
-
-      if (inline === 'start') {
-        inlineScroll = targetInline;
-      } else if (inline === 'center') {
-        inlineScroll = targetInline - viewportWidth / 2;
-      } else if (inline === 'end') {
-        inlineScroll = targetInline - viewportWidth;
-      } else {
-        inlineScroll = alignNearest(viewportX, viewportX + viewportWidth, viewportWidth, borderLeft, borderRight, viewportX + targetInline, viewportX + targetInline + targetWidth, targetWidth);
-      }
-
-      blockScroll = Math.max(0, blockScroll + viewportY);
-      inlineScroll = Math.max(0, inlineScroll + viewportX);
-    } else {
-      if (block === 'start') {
-        blockScroll = targetBlock - top - borderTop;
-      } else if (block === 'end') {
-        blockScroll = targetBlock - bottom + borderBottom + scrollbarHeight;
-      } else if (block === 'nearest') {
-        blockScroll = alignNearest(top, bottom, height, borderTop, borderBottom + scrollbarHeight, targetBlock, targetBlock + targetHeight, targetHeight);
-      } else {
-        blockScroll = targetBlock - (top + height / 2) + scrollbarHeight / 2;
-      }
-
-      if (inline === 'start') {
-        inlineScroll = targetInline - left - borderLeft;
-      } else if (inline === 'center') {
-        inlineScroll = targetInline - (left + width / 2) + scrollbarWidth / 2;
-      } else if (inline === 'end') {
-        inlineScroll = targetInline - right + borderRight + scrollbarWidth;
-      } else {
-        inlineScroll = alignNearest(left, right, width, borderLeft, borderRight + scrollbarWidth, targetInline, targetInline + targetWidth, targetWidth);
-      }
-
-      var scrollLeft = frame.scrollLeft,
-          scrollTop = frame.scrollTop;
-      blockScroll = Math.max(0, Math.min(scrollTop + blockScroll, frame.scrollHeight - height + scrollbarHeight));
-      inlineScroll = Math.max(0, Math.min(scrollLeft + inlineScroll, frame.scrollWidth - width + scrollbarWidth));
-      targetBlock += scrollTop - blockScroll;
-      targetInline += scrollLeft - inlineScroll;
-    }
-
-    computations.push({
-      el: frame,
-      top: blockScroll,
-      left: inlineScroll
-    });
-  }
-
-  return computations;
-});
 // CONCATENATED MODULE: ../node_modules/scroll-into-view-if-needed/es/index.js
 
 
@@ -373,7 +179,7 @@ function scrollIntoView(target, options) {
   var targetIsDetached = !target.ownerDocument.documentElement.contains(target);
 
   if (isOptionsObject(options) && typeof options.behavior === 'function') {
-    return options.behavior(targetIsDetached ? [] : es(target, options));
+    return options.behavior(targetIsDetached ? [] : index_module(target, options));
   }
 
   if (targetIsDetached) {
@@ -381,10 +187,10 @@ function scrollIntoView(target, options) {
   }
 
   var computeOptions = getOptions(options);
-  return defaultBehavior(es(target, computeOptions), computeOptions.behavior);
+  return defaultBehavior(index_module(target, computeOptions), computeOptions.behavior);
 }
 
-/* harmony default export */ var scroll_into_view_if_needed_es = (scrollIntoView);
+/* harmony default export */ var es = (scrollIntoView);
 // CONCATENATED MODULE: ./ractive-droplist.ractive.html
 
 
@@ -954,7 +760,7 @@ function esc(string) {
         var next_or_prev = k === 38 ? 'previousSibling' : 'nextSibling'; // Up / down arrow keypress
 
         if (selected_a && selected_a[next_or_prev]) {
-          scroll_into_view_if_needed_es(selected_a[next_or_prev], {
+          es(selected_a[next_or_prev], {
             block: 'nearest',
             inline: 'nearest'
           });
@@ -988,7 +794,7 @@ function esc(string) {
       this.find('.droplist-input-wrapper > input').focus();
 
       if (this.find('a.selected')) {
-        scroll_into_view_if_needed_es(this.find('a.selected'), {
+        es(this.find('a.selected'), {
           scrollMode: 'if-needed',
           block: 'nearest',
           inline: 'nearest'
